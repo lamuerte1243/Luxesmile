@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- No-flash theme init: must run before any CSS renders -->
-  <script>
-    (function(){
-      var t = localStorage.getItem('luxesmile_theme');
-      var preferDark = !t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (t === 'dark' || (!t && preferDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dental Health Blog — Luxesmile Dental Clinic Nairobi</title>
@@ -171,12 +161,6 @@
       </ul>
       <div class="nav-actions">
         <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-calendar-check"></i> Book Appointment</a>
-        <button class="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false" data-tooltip="Switch to Dark" title="Toggle dark/light mode">
-          <span class="theme-toggle-knob">
-            <i class="fas fa-sun icon-sun"></i>
-            <i class="fas fa-moon icon-moon"></i>
-          </span>
-        </button>
         <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
       </div>
     </div>

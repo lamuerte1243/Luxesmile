@@ -4,14 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel — Luxesmile Dental Clinic</title>
-  <!-- No-flash theme init -->
-  <script>
-    (function(){
-      var t=localStorage.getItem('luxesmile_theme');
-      var pd=!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if(t==='dark'||(!t&&pd))document.documentElement.setAttribute('data-theme','dark');
-    })();
-  </script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="/socket.io/socket.io.js"></script>
@@ -138,62 +130,6 @@
     .btn-primary:hover{background:var(--primary-dark)}
     @media(max-width:1024px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:768px){.sidebar{transform:translateX(-100%)}.main-content{margin-left:0}.chat-container{flex-direction:column;height:auto}.chat-sidebar-admin{width:100%;height:200px}}
-
-    /* ── Dark Mode — Admin ── */
-    [data-theme="dark"] {
-      --white:#16161F; --off-white:#0E0E16; --light-gray:#1C1C28; --mid-gray:#2A2A3A;
-      --text-dark:#F0EDE4; --text-mid:#B8B4AA; --text-light:#6E6A62;
-      --navy:#0A0A12; --navy-light:#131320; --navy-mid:#1E1E2E;
-    }
-    [data-theme="dark"] body{background:#0E0E16;color:#F0EDE4}
-    [data-theme="dark"] .sidebar{background:#0A0A12;border-right:1px solid rgba(212,175,55,0.08)}
-    [data-theme="dark"] .sidebar-logo{border-bottom-color:rgba(212,175,55,0.08)}
-    [data-theme="dark"] .sidebar-nav .nav-section-label{color:rgba(255,255,255,0.30)}
-    [data-theme="dark"] .nav-link-item{color:rgba(255,255,255,0.55)}
-    [data-theme="dark"] .nav-link-item:hover,[data-theme="dark"] .nav-link-item.active{background:rgba(212,175,55,0.06);color:#D4AF37;border-left-color:#D4AF37}
-    [data-theme="dark"] .topbar{background:#131320;border-bottom:1px solid rgba(212,175,55,0.10)}
-    [data-theme="dark"] .topbar-title{color:#F0EDE4}
-    [data-theme="dark"] .card{background:#1C1C28;border:1px solid rgba(212,175,55,0.10)}
-    [data-theme="dark"] .stat-card{background:#1C1C28;border:1px solid rgba(212,175,55,0.10)}
-    [data-theme="dark"] .stat-card h3{color:#F0EDE4}
-    [data-theme="dark"] .stat-card p{color:#B8B4AA}
-    [data-theme="dark"] table{color:#B8B4AA}
-    [data-theme="dark"] thead th{background:#131320;color:#6E6A62;border-bottom-color:rgba(212,175,55,0.10)}
-    [data-theme="dark"] tbody tr{border-bottom-color:rgba(212,175,55,0.07)}
-    [data-theme="dark"] tbody tr:hover{background:rgba(212,175,55,0.04)}
-    [data-theme="dark"] .section-heading{color:#F0EDE4}
-    [data-theme="dark"] .section-heading span{color:#B8B4AA}
-    [data-theme="dark"] .chat-sidebar-admin{background:#131320;border-right:1px solid rgba(212,175,55,0.10)}
-    [data-theme="dark"] .chat-room-item{border-bottom-color:rgba(212,175,55,0.07);color:#B8B4AA}
-    [data-theme="dark"] .chat-room-item:hover,[data-theme="dark"] .chat-room-item.active{background:rgba(212,175,55,0.06)}
-    [data-theme="dark"] .chat-main{background:#0E0E16}
-    [data-theme="dark"] .chat-header{background:#131320;border-bottom-color:rgba(212,175,55,0.10)}
-    [data-theme="dark"] .chat-header h4{color:#F0EDE4}
-    [data-theme="dark"] .msg-bubble.other{background:#1C1C28;color:#B8B4AA}
-    [data-theme="dark"] .msg-bubble.mine{background:rgba(212,175,55,0.88);color:#0A0A12}
-    [data-theme="dark"] .chat-input-area{background:#131320;border-top-color:rgba(212,175,55,0.10)}
-    [data-theme="dark"] .chat-input-area input{background:#1C1C28;border-color:rgba(212,175,55,0.15);color:#F0EDE4}
-    [data-theme="dark"] .form-group input,[data-theme="dark"] .form-group select,[data-theme="dark"] .form-group textarea{background:#16161F;border-color:rgba(212,175,55,0.15);color:#F0EDE4}
-    [data-theme="dark"] .form-group input:focus,[data-theme="dark"] .form-group select:focus,[data-theme="dark"] .form-group textarea:focus{border-color:#D4AF37;box-shadow:0 0 0 3px rgba(212,175,55,0.10);background:#0E0E16}
-    [data-theme="dark"] .form-group label{color:#B8B4AA}
-    [data-theme="dark"] .modal{background:#1C1C28;border:1px solid rgba(212,175,55,0.12)}
-    [data-theme="dark"] .modal-title{color:#F0EDE4}
-    [data-theme="dark"] .modal-close{color:#B8B4AA}
-    [data-theme="dark"] select option{background:#16161F;color:#F0EDE4}
-    [data-theme="dark"] #admin-display{color:#F0EDE4!important}
-
-    /* Admin toggle in topbar */
-    .admin-theme-wrap{display:flex;align-items:center}
-    .admin-theme-wrap .theme-toggle{width:46px;height:25px;border-radius:12.5px;background:#F1F5F9;border:1.5px solid #E2E8F0}
-    .admin-theme-wrap .theme-toggle-knob{width:18px;height:18px;top:2px;left:2px;font-size:9px}
-    [data-theme="dark"] .admin-theme-wrap .theme-toggle{background:rgba(212,175,55,0.15);border-color:rgba(212,175,55,0.35)}
-    [data-theme="dark"] .admin-theme-wrap .theme-toggle-knob{transform:translateX(20px);background:#0E0E16}
-    [data-theme="dark"] .admin-theme-wrap .theme-toggle-knob .icon-sun{opacity:0;transform:scale(0.5)}
-    [data-theme="dark"] .admin-theme-wrap .theme-toggle-knob .icon-moon{opacity:1;transform:scale(1)}
-    .theme-toggle-knob .icon-sun,.theme-toggle-knob .icon-moon{position:absolute;transition:opacity 0.25s ease,transform 0.25s ease}
-    .theme-toggle-knob .icon-sun{opacity:1;transform:scale(1);color:#F59E0B}
-    .theme-toggle-knob .icon-moon{opacity:0;transform:scale(0.5);color:#A5B4FC}
-    *,*::before,*::after{transition:background-color 0.35s ease,background 0.35s ease,border-color 0.35s ease,color 0.30s ease,box-shadow 0.35s ease}
   </style>
 </head>
 <body>
@@ -228,14 +164,6 @@
     <h2 class="topbar-title" id="page-title">Overview</h2>
     <div style="display:flex;align-items:center;gap:14px">
       <span id="current-time" style="font-size:0.8rem;color:var(--text-light)"></span>
-      <div class="admin-theme-wrap">
-        <button class="theme-toggle" aria-label="Toggle dark/light mode" data-tooltip="Switch to Dark" title="Toggle theme" style="position:relative;display:inline-flex;align-items:center;cursor:pointer;border:none;outline:none;overflow:hidden;flex-shrink:0">
-          <span class="theme-toggle-knob" style="position:absolute;border-radius:50%;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.20);display:flex;align-items:center;justify-content:center">
-            <i class="fas fa-sun icon-sun"></i>
-            <i class="fas fa-moon icon-moon"></i>
-          </span>
-        </button>
-      </div>
       <div style="font-size:0.85rem;font-weight:600;color:var(--navy)" id="admin-display"></div>
     </div>
   </header>
@@ -840,29 +768,6 @@ function logout() { localStorage.clear(); window.location.href='/login'; }
 document.querySelectorAll('.modal-overlay').forEach(o => {
   o.addEventListener('click', e => { if (e.target===o) o.classList.remove('open'); });
 });
-
-/* ── Theme Toggle (Admin) ── */
-(function initAdminTheme(){
-  var STORAGE_KEY='luxesmile_theme', html=document.documentElement;
-  function applyTheme(t,animate){
-    if(!animate)html.classList.add('theme-transitioning');
-    if(t==='dark')html.setAttribute('data-theme','dark');
-    else html.removeAttribute('data-theme');
-    document.querySelectorAll('.theme-toggle').forEach(btn=>{
-      btn.setAttribute('data-tooltip',t==='dark'?'Switch to Light':'Switch to Dark');
-      btn.setAttribute('aria-pressed',t==='dark'?'true':'false');
-    });
-    if(!animate)requestAnimationFrame(()=>requestAnimationFrame(()=>html.classList.remove('theme-transitioning')));
-  }
-  function toggleTheme(){
-    var next=html.getAttribute('data-theme')==='dark'?'light':'dark';
-    localStorage.setItem(STORAGE_KEY,next);
-    applyTheme(next,true);
-  }
-  applyTheme(html.getAttribute('data-theme')||'light',false);
-  document.querySelectorAll('.theme-toggle').forEach(btn=>btn.addEventListener('click',toggleTheme));
-  window.luxeTheme={toggle:toggleTheme};
-})();
 </script>
 </body>
 </html>

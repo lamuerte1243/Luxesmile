@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- No-flash theme init -->
-  <script>(function(){var t=localStorage.getItem('luxesmile_theme');var pd=!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(!t&&pd))document.documentElement.setAttribute('data-theme','dark');})();</script>
   <title>Login — Luxesmile Dental Clinic</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -78,62 +76,9 @@
     .demo-box strong { color: var(--navy); font-weight: 700; display: block; margin-bottom: 6px; }
     .demo-box span { color: var(--text-mid); display: block; line-height: 1.7; }
     @media(max-width:480px){ .auth-card { padding: 32px 24px; } }
-
-    /* ── Dark Mode ── */
-    [data-theme="dark"] body { background: #0E0E16; }
-    [data-theme="dark"] .auth-wrap { background: radial-gradient(ellipse at 30% 20%, rgba(212,175,55,0.06) 0%, transparent 60%), #0E0E16; }
-    [data-theme="dark"] .auth-card { background: #16161F; border: 1px solid rgba(212,175,55,0.12); box-shadow: 0 20px 60px rgba(0,0,0,0.60); }
-    [data-theme="dark"] .auth-card h2 { color: #F0EDE4; }
-    [data-theme="dark"] .auth-card p { color: #B8B4AA; }
-    [data-theme="dark"] .form-group label { color: #B8B4AA; }
-    [data-theme="dark"] .form-group input { background: #0E0E16; border-color: rgba(212,175,55,0.15); color: #F0EDE4; }
-    [data-theme="dark"] .form-group input:focus { border-color: #D4AF37; background: #0A0A12; box-shadow: 0 0 0 3px rgba(212,175,55,0.10); }
-    [data-theme="dark"] .form-group input::placeholder { color: #6E6A62; }
-    [data-theme="dark"] .demo-box { background: rgba(212,175,55,0.08); border-color: rgba(212,175,55,0.25); }
-    [data-theme="dark"] .demo-box strong { color: #F0EDE4; }
-    [data-theme="dark"] .demo-box span { color: #B8B4AA; }
-    [data-theme="dark"] .auth-footer { color: #B8B4AA; border-top-color: rgba(212,175,55,0.10); }
-    [data-theme="dark"] .auth-footer a { color: #D4AF37; }
-    [data-theme="dark"] .error-msg { background: rgba(239,68,68,0.10); border-color: rgba(239,68,68,0.25); color: #fca5a5; }
-    [data-theme="dark"] .success-msg { background: rgba(34,197,94,0.10); border-color: rgba(34,197,94,0.25); color: #86efac; }
-
-    /* Dark mode toggle (floating, top-right) */
-    .dm-toggle-wrap { position: fixed; top: 20px; right: 20px; z-index: 100; }
-    .dm-toggle-wrap .theme-toggle {
-      position: relative; width: 52px; height: 28px; border-radius: 14px;
-      background: #F1F5F9; border: 1.5px solid #E2E8F0; cursor: pointer;
-      display: flex; align-items: center; overflow: hidden; outline: none;
-    }
-    .dm-toggle-wrap .theme-toggle:hover { border-color: #D4AF37; }
-    .dm-toggle-wrap .theme-toggle-knob {
-      position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
-      border-radius: 50%; background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.20);
-      display: flex; align-items: center; justify-content: center; font-size: 10px;
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.35s ease;
-    }
-    .dm-toggle-wrap .icon-sun,.dm-toggle-wrap .icon-moon { position: absolute; transition: opacity 0.25s ease, transform 0.25s ease; }
-    .dm-toggle-wrap .icon-sun { opacity: 1; transform: scale(1); color: #F59E0B; }
-    .dm-toggle-wrap .icon-moon { opacity: 0; transform: scale(0.5); color: #A5B4FC; }
-    [data-theme="dark"] .dm-toggle-wrap .theme-toggle { background: rgba(212,175,55,0.15); border-color: rgba(212,175,55,0.35); }
-    [data-theme="dark"] .dm-toggle-wrap .theme-toggle-knob { transform: translateX(24px); background: #0E0E16; }
-    [data-theme="dark"] .dm-toggle-wrap .icon-sun { opacity: 0; transform: scale(0.5); }
-    [data-theme="dark"] .dm-toggle-wrap .icon-moon { opacity: 1; transform: scale(1); }
-
-    *,*::before,*::after{ transition:background-color 0.35s ease,background 0.35s ease,border-color 0.35s ease,color 0.30s ease,box-shadow 0.35s ease; }
   </style>
 </head>
 <body>
-
-<!-- Floating theme toggle -->
-<div class="dm-toggle-wrap">
-  <button class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
-    <span class="theme-toggle-knob">
-      <i class="fas fa-sun icon-sun"></i>
-      <i class="fas fa-moon icon-moon"></i>
-    </span>
-  </button>
-</div>
-
 <div class="auth-wrap">
   <div class="auth-card">
     <div class="auth-logo">
@@ -274,20 +219,6 @@ if (existingToken) {
       }
     }).catch(() => {});
 }
-
-/* Theme toggle */
-(function(){
-  var K='luxesmile_theme',html=document.documentElement;
-  function apply(t,a){
-    if(!a)html.classList.add('theme-transitioning');
-    if(t==='dark')html.setAttribute('data-theme','dark');else html.removeAttribute('data-theme');
-    document.querySelectorAll('.theme-toggle').forEach(b=>{b.setAttribute('data-tooltip',t==='dark'?'Switch to Light':'Switch to Dark')});
-    if(!a)requestAnimationFrame(()=>requestAnimationFrame(()=>html.classList.remove('theme-transitioning')));
-  }
-  function toggle(){var n=html.getAttribute('data-theme')==='dark'?'light':'dark';localStorage.setItem(K,n);apply(n,true);}
-  apply(html.getAttribute('data-theme')||'light',false);
-  document.querySelectorAll('.theme-toggle').forEach(b=>b.addEventListener('click',toggle));
-})();
 </script>
 </body>
 </html>
