@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — Luxesmile Dental Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--off-white); min-height: 100vh; display: flex; flex-direction: column; }
+    .auth-wrap {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px; min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #1a2a4a 50%, var(--navy-light) 100%);
+    }
+    .auth-card {
+      background: var(--white); border-radius: var(--radius-xl); padding: 48px 44px;
+      width: 100%; max-width: 480px; box-shadow: var(--shadow-xl);
+      position: relative; overflow: hidden;
+    }
+    .auth-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    }
+    .auth-logo { text-align: center; margin-bottom: 28px; }
+    .auth-logo-icon { font-size: 2.5rem; margin-bottom: 8px; display: block; }
+    .auth-logo h1 { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; color: var(--navy); margin: 0 0 4px; }
+    .auth-logo h1 span { color: var(--primary); }
+    .auth-logo p { color: var(--text-light); font-size: 0.9rem; margin: 0; }
+    .auth-title { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .auth-subtitle { color: var(--text-mid); font-size: 0.9rem; margin-bottom: 28px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.88rem; color: var(--text-dark); margin-bottom: 7px; }
+    .form-group .input-wrap { position: relative; }
+    .form-group .input-wrap i.icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-light); font-size: 0.95rem; }
+    .form-group input {
+      width: 100%; padding: 12px 14px 12px 42px;
+      border: 1.5px solid var(--mid-gray); border-radius: var(--radius-md);
+      font-family: var(--font-body); font-size: 0.95rem; color: var(--text-dark);
+      transition: all var(--transition-base); outline: none; background: var(--off-white);
+      box-sizing: border-box;
+    }
+    .form-group input:focus { border-color: var(--primary); background: var(--white); box-shadow: 0 0 0 3px rgba(212,175,55,0.12); }
+    .form-group .toggle-pw { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-light); }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-auth {
+      width: 100%; padding: 14px; background: var(--primary); color: var(--navy);
+      border: none; border-radius: var(--radius-md); font-family: var(--font-head);
+      font-size: 1rem; font-weight: 700; cursor: pointer; transition: all var(--transition-base);
+      display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; margin-bottom: 20px;
+    }
+    .btn-auth:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: var(--shadow-gold); }
+    .btn-auth:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+    .pw-strength { height: 4px; border-radius: 2px; background: var(--mid-gray); margin-top: 8px; overflow: hidden; }
+    .pw-strength-bar { height: 100%; width: 0%; transition: all 0.3s ease; border-radius: 2px; }
+    .pw-hint { font-size: 0.76rem; color: var(--text-light); margin-top: 4px; }
+    .error-msg { background: #fff2f2; border: 1px solid #ffd6d6; border-radius: var(--radius-sm); padding: 12px 16px; color: #c0392b; font-size: 0.88rem; margin-bottom: 18px; display: none; }
+    .error-msg.show { display: flex; align-items: center; gap: 8px; }
+    .success-msg { background: #f0fff4; border: 1px solid #d4edda; border-radius: var(--radius-sm); padding: 12px 16px; color: #1a7f37; font-size: 0.88rem; margin-bottom: 18px; display: none; }
+    .success-msg.show { display: flex; align-items: center; gap: 8px; }
+    .auth-footer { text-align: center; font-size: 0.9rem; color: var(--text-mid); margin-top: 4px; }
+    .auth-footer a { color: var(--primary); font-weight: 600; text-decoration: none; }
+    .auth-footer a:hover { text-decoration: underline; }
+    .terms-note { font-size: 0.78rem; color: var(--text-light); text-align: center; margin-bottom: 16px; }
+    @media(max-width:480px){ .auth-card { padding: 32px 22px; } .form-row-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <span class="auth-logo-icon">🦷</span>
+      <h1>Luxe<span>smile</span></h1>
+      <p>Dental Clinic · Nairobi, Kenya</p>
+    </div>
+
+    <h2 class="auth-title">Create your account</h2>
+    <p class="auth-subtitle">Join Luxesmile — manage appointments, orders & more</p>
+
+    <div class="error-msg" id="signup-error"><i class="fas fa-exclamation-circle"></i><span id="error-text">Error</span></div>
+    <div class="success-msg" id="signup-success"><i class="fas fa-check-circle"></i><span>Account created! Redirecting to your dashboard...</span></div>
+
+    <form id="signup-form" novalidate>
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <div class="input-wrap">
+          <i class="fas fa-user icon"></i>
+          <input type="text" id="name" name="name" placeholder="Jane Muthoni" required autocomplete="name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrap">
+          <i class="fas fa-envelope icon"></i>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <div class="input-wrap">
+          <i class="fas fa-phone icon"></i>
+          <input type="tel" id="phone" name="phone" placeholder="+254 7XX XXX XXX" autocomplete="tel">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <i class="fas fa-lock icon"></i>
+          <input type="password" id="password" name="password" placeholder="Create a strong password" required autocomplete="new-password">
+          <button type="button" class="toggle-pw" id="toggle-pw"><i class="fas fa-eye"></i></button>
+        </div>
+        <div class="pw-strength"><div class="pw-strength-bar" id="pw-bar"></div></div>
+        <div class="pw-hint" id="pw-hint">Minimum 6 characters</div>
+      </div>
+      <div class="form-group">
+        <label for="confirm">Confirm Password</label>
+        <div class="input-wrap">
+          <i class="fas fa-lock icon"></i>
+          <input type="password" id="confirm" name="confirm" placeholder="Repeat your password" required autocomplete="new-password">
+        </div>
+      </div>
+      <p class="terms-note">By creating an account you agree to our <a href="#" style="color:var(--primary)">Terms of Service</a> and <a href="#" style="color:var(--primary)">Privacy Policy</a>.</p>
+      <button type="submit" class="btn-auth" id="signup-btn">
+        <i class="fas fa-user-plus"></i> Create Account
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a href="login.html">Sign in</a>
+    </div>
+    <div class="auth-footer" style="margin-top:12px;">
+      <a href="index.html"><i class="fas fa-arrow-left"></i> Back to website</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '/api';
+
+// Password toggle
+document.getElementById('toggle-pw').addEventListener('click', function() {
+  const input = document.getElementById('password');
+  const icon = this.querySelector('i');
+  input.type = input.type === 'password' ? 'text' : 'password';
+  icon.className = input.type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+});
+
+// Password strength
+document.getElementById('password').addEventListener('input', function() {
+  const val = this.value;
+  const bar = document.getElementById('pw-bar');
+  const hint = document.getElementById('pw-hint');
+  let score = 0;
+  if (val.length >= 6) score++;
+  if (val.length >= 10) score++;
+  if (/[A-Z]/.test(val)) score++;
+  if (/[0-9]/.test(val)) score++;
+  if (/[^A-Za-z0-9]/.test(val)) score++;
+  const colors = ['#e74c3c','#e67e22','#f1c40f','#2ecc71','#27ae60'];
+  const labels = ['Very weak','Weak','Fair','Strong','Very strong'];
+  bar.style.width = (score * 20) + '%';
+  bar.style.background = colors[score - 1] || '#e2e8f0';
+  hint.textContent = val ? (labels[score - 1] || 'Very weak') : 'Minimum 6 characters';
+});
+
+// Form submit
+document.getElementById('signup-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('signup-btn');
+  const errorEl = document.getElementById('signup-error');
+  const errorText = document.getElementById('error-text');
+  const successEl = document.getElementById('signup-success');
+
+  errorEl.classList.remove('show');
+  successEl.classList.remove('show');
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const password = document.getElementById('password').value;
+  const confirm = document.getElementById('confirm').value;
+
+  if (!name || !email || !password) {
+    errorText.textContent = 'Please fill in all required fields';
+    errorEl.classList.add('show'); return;
+  }
+  if (password !== confirm) {
+    errorText.textContent = 'Passwords do not match';
+    errorEl.classList.add('show'); return;
+  }
+  if (password.length < 6) {
+    errorText.textContent = 'Password must be at least 6 characters';
+    errorEl.classList.add('show'); return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
+
+  try {
+    const res = await fetch(`${API}/auth/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, password })
+    });
+    const data = await res.json();
+
+    if (!data.success) {
+      errorText.textContent = data.message || 'Signup failed';
+      errorEl.classList.add('show');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+      return;
+    }
+
+    localStorage.setItem('luxesmile_token', data.token);
+    localStorage.setItem('luxesmile_user', JSON.stringify(data.user));
+    successEl.classList.add('show');
+
+    setTimeout(() => { window.location.href = '/dashboard'; }, 1400);
+
+  } catch (err) {
+    errorText.textContent = 'Network error. Please try again.';
+    errorEl.classList.add('show');
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+  }
+});
+</script>
+</body>
+</html>

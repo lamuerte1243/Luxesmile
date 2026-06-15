@@ -419,5 +419,28 @@
 
 <div id="toast-container"></div>
 <script src="js/main.js"></script>
+<script>
+// Real newsletter subscription
+document.querySelector('form[data-form="newsletter"]')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const input = this.querySelector('input[type="email"]');
+  if (!input || !input.value) return;
+  const btn = this.querySelector('button');
+  if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; }
+  try {
+    const res = await fetch('/api/contact/newsletter', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ email: input.value.trim() })
+    });
+    const data = await res.json();
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Subscribe'; }
+    showToast(data.message || 'Subscribed!', 'success', 'fa-check-circle');
+    if (data.success) input.value = '';
+  } catch(err) {
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Subscribe'; }
+    showToast('Network error', 'error', 'fa-exclamation-circle');
+  }
+});
+</script>
 </body>
 </html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Luxesmile Dental Clinic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <style>
+    :root {
+      --primary:#D4AF37;--primary-dark:#B8962E;--primary-bg:rgba(212,175,55,0.08);
+      --navy:#0F172A;--navy-light:#1E293B;--navy-mid:#334155;
+      --white:#fff;--off-white:#F8FAFC;--light-gray:#F1F5F9;--mid-gray:#E2E8F0;
+      --text-dark:#0F172A;--text-mid:#475569;--text-light:#94A3B8;
+      --green:#22c55e;--red:#ef4444;--blue:#3b82f6;--orange:#f59e0b;--purple:#8b5cf6;
+      --font-head:'Poppins',sans-serif;--font-body:'DM Sans',sans-serif;
+      --sidebar-w:240px;--radius-md:12px;--radius-lg:20px;
+      --shadow-md:0 4px 16px rgba(15,23,42,0.10);--shadow-lg:0 10px 40px rgba(15,23,42,0.14);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--font-body);background:var(--off-white);color:var(--text-dark);display:flex;min-height:100vh}
+    .sidebar{width:var(--sidebar-w);background:var(--navy);display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;overflow-y:auto}
+    .sidebar-logo{padding:20px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.08)}
+    .sidebar-logo-text{font-family:var(--font-head);font-size:1.2rem;font-weight:800;color:var(--white)}
+    .sidebar-logo-text span{color:var(--primary)}
+    .sidebar-logo-sub{font-size:0.7rem;color:rgba(255,255,255,0.35);margin-top:2px}
+    .admin-badge{background:var(--red);color:#fff;font-size:0.65rem;font-weight:700;padding:2px 7px;border-radius:8px;margin-left:6px}
+    .sidebar-nav{flex:1;padding:12px 0}
+    .nav-section-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);padding:10px 16px 5px}
+    .nav-link-item{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:0.88rem;color:rgba(255,255,255,0.65);cursor:pointer;transition:all 0.2s;border-left:3px solid transparent;text-decoration:none}
+    .nav-link-item i{width:16px;text-align:center}
+    .nav-link-item:hover,.nav-link-item.active{color:var(--white);background:rgba(255,255,255,0.06);border-left-color:var(--primary)}
+    .nav-link-item.active{color:var(--primary)}
+    .nav-badge{background:var(--red);color:#fff;border-radius:10px;font-size:0.65rem;font-weight:700;padding:1px 6px;margin-left:auto}
+    .sidebar-footer{padding:14px 16px;border-top:1px solid rgba(255,255,255,0.08)}
+    .btn-logout{width:100%;padding:9px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.7);border:none;border-radius:var(--radius-md);cursor:pointer;font-family:var(--font-body);font-size:0.85rem;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s}
+    .btn-logout:hover{background:rgba(239,68,68,0.2);color:#fca5a5}
+    .main-content{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column}
+    .topbar{background:var(--white);border-bottom:1px solid var(--mid-gray);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:var(--shadow-md)}
+    .topbar-title{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--navy)}
+    .page-content{padding:24px;flex:1}
+    .section{display:none}.section.active{display:block}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+    .stat-card{background:var(--white);border-radius:var(--radius-lg);padding:20px;border:1px solid var(--mid-gray);display:flex;align-items:center;gap:14px;transition:all 0.2s}
+    .stat-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+    .stat-icon{width:46px;height:46px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+    .si-gold{background:var(--primary-bg);color:var(--primary)}.si-green{background:rgba(34,197,94,0.1);color:var(--green)}.si-blue{background:rgba(59,130,246,0.1);color:var(--blue)}.si-red{background:rgba(239,68,68,0.1);color:var(--red)}.si-purple{background:rgba(139,92,246,0.1);color:var(--purple)}.si-orange{background:rgba(245,158,11,0.1);color:var(--orange)}
+    .stat-num{font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--navy);line-height:1;margin-bottom:2px}
+    .stat-label{font-size:0.78rem;color:var(--text-light);font-weight:500}
+    .card{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--mid-gray);padding:20px 22px;margin-bottom:20px}
+    .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .card-title{font-family:var(--font-head);font-size:0.95rem;font-weight:700;color:var(--navy)}
+    .data-table{width:100%;border-collapse:collapse;font-size:0.85rem}
+    .data-table th{padding:9px 12px;text-align:left;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-light);background:var(--light-gray);border-bottom:1px solid var(--mid-gray)}
+    .data-table td{padding:12px 12px;border-bottom:1px solid var(--mid-gray);color:var(--text-mid);vertical-align:middle}
+    .data-table tr:last-child td{border-bottom:none}
+    .data-table tr:hover td{background:var(--off-white)}
+    .badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:0.72rem;font-weight:600;text-transform:capitalize}
+    .badge-pending{background:rgba(245,158,11,0.12);color:#92400e}
+    .badge-confirmed{background:rgba(59,130,246,0.12);color:#1e40af}
+    .badge-paid{background:rgba(34,197,94,0.12);color:#15803d}
+    .badge-delivered{background:rgba(34,197,94,0.15);color:#15803d}
+    .badge-cancelled{background:rgba(239,68,68,0.12);color:#b91c1c}
+    .badge-processing{background:rgba(139,92,246,0.12);color:#6d28d9}
+    .badge-dispatched{background:rgba(59,130,246,0.15);color:#1d4ed8}
+    .badge-open{background:rgba(34,197,94,0.12);color:#15803d}
+    .badge-closed{background:rgba(148,163,184,0.15);color:#475569}
+    .badge-new{background:rgba(239,68,68,0.12);color:#b91c1c}
+    .badge-read{background:rgba(148,163,184,0.15);color:#475569}
+    .badge-completed{background:rgba(34,197,94,0.15);color:#15803d}
+    .badge-rescheduled{background:rgba(245,158,11,0.15);color:#92400e}
+    .btn-sm{padding:5px 12px;border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;border:none;transition:all 0.2s}
+    .btn-gold{background:var(--primary);color:var(--navy)}.btn-gold:hover{background:var(--primary-dark)}
+    .btn-navy{background:var(--navy);color:var(--white)}.btn-navy:hover{background:var(--navy-light)}
+    .btn-red{background:var(--red);color:#fff}.btn-red:hover{opacity:0.85}
+    .btn-green{background:var(--green);color:#fff}.btn-green:hover{opacity:0.85}
+    .btn-outline{background:transparent;border:1.5px solid var(--mid-gray);color:var(--text-mid)}.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+    select.status-select{padding:5px 8px;border:1.5px solid var(--mid-gray);border-radius:8px;font-size:0.78rem;cursor:pointer;outline:none}
+    select.status-select:focus{border-color:var(--primary)}
+
+    /* CHAT ADMIN */
+    .chat-container{display:flex;height:540px;border:1px solid var(--mid-gray);border-radius:var(--radius-lg);overflow:hidden}
+    .chat-sidebar-admin{width:280px;border-right:1px solid var(--mid-gray);background:var(--light-gray);display:flex;flex-direction:column;flex-shrink:0}
+    .chat-sidebar-header{padding:14px 16px;border-bottom:1px solid var(--mid-gray);background:var(--white)}
+    .chat-sidebar-header h4{font-family:var(--font-head);font-size:0.9rem;font-weight:700;color:var(--navy)}
+    .chat-room-list{flex:1;overflow-y:auto}
+    .chat-room-item{padding:12px 14px;border-bottom:1px solid var(--mid-gray);cursor:pointer;background:var(--white);transition:all 0.15s}
+    .chat-room-item:hover,.chat-room-item.active{background:var(--primary-bg)}
+    .room-customer{font-weight:700;font-size:0.85rem;color:var(--navy);margin-bottom:2px}
+    .room-preview{font-size:0.78rem;color:var(--text-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .unread-badge{background:var(--primary);color:var(--navy);border-radius:10px;font-size:0.65rem;font-weight:700;padding:1px 6px}
+    .chat-main{flex:1;display:flex;flex-direction:column;background:var(--white)}
+    .chat-main-header{padding:12px 18px;border-bottom:1px solid var(--mid-gray);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .chat-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+    .chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-light);text-align:center;gap:10px}
+    .chat-empty i{font-size:2.5rem}
+    .msg-bubble{max-width:72%;display:flex;flex-direction:column;gap:2px}
+    .msg-bubble.admin{align-self:flex-end;align-items:flex-end}
+    .msg-bubble.customer{align-self:flex-start;align-items:flex-start}
+    .msg-text{padding:9px 13px;border-radius:14px;font-size:0.87rem;line-height:1.5;word-break:break-word}
+    .msg-bubble.admin .msg-text{background:var(--navy);color:#fff;border-bottom-right-radius:4px}
+    .msg-bubble.customer .msg-text{background:var(--light-gray);color:var(--text-dark);border-bottom-left-radius:4px}
+    .msg-time{font-size:0.68rem;color:var(--text-light);padding:0 3px}
+    .msg-sender{font-size:0.7rem;font-weight:600;color:var(--primary);padding:0 3px}
+    .chat-input-area{padding:12px 14px;border-top:1px solid var(--mid-gray);display:flex;gap:8px;align-items:flex-end}
+    .chat-input-area textarea{flex:1;resize:none;border:1.5px solid var(--mid-gray);border-radius:var(--radius-md);padding:9px 12px;font-family:var(--font-body);font-size:0.88rem;outline:none;min-height:40px;max-height:90px;transition:border-color 0.2s}
+    .chat-input-area textarea:focus{border-color:var(--primary)}
+    .btn-send{width:40px;height:40px;background:var(--primary);color:var(--navy);border:none;border-radius:var(--radius-md);cursor:pointer;font-size:0.95rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0}
+    .btn-send:hover{background:var(--primary-dark)}
+    .toast-container{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px}
+    .toast{background:var(--navy);color:#fff;padding:12px 16px;border-radius:var(--radius-md);font-size:0.85rem;display:flex;align-items:center;gap:9px;box-shadow:var(--shadow-lg);animation:slideIn 0.3s ease}
+    .toast.success{border-left:4px solid var(--green)}.toast.error{border-left:4px solid var(--red)}.toast.info{border-left:4px solid var(--primary)}
+    @keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+    .empty-state{text-align:center;padding:40px 20px;color:var(--text-light)}
+    .empty-state i{font-size:2.5rem;margin-bottom:12px;display:block}
+    .loading{text-align:center;padding:32px;color:var(--text-light)}
+    .loading i{font-size:1.3rem;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+    .modal-overlay.open{display:flex}
+    .modal{background:var(--white);border-radius:var(--radius-lg);padding:28px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;position:relative}
+    .modal-close{position:absolute;top:14px;right:14px;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text-mid)}
+    .modal-title{font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:18px}
+    .form-group{margin-bottom:16px}
+    .form-group label{display:block;font-weight:600;font-size:0.83rem;color:var(--text-dark);margin-bottom:5px}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:9px 12px;border:1.5px solid var(--mid-gray);border-radius:var(--radius-md);font-family:var(--font-body);font-size:0.88rem;outline:none;transition:border-color 0.2s}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary)}
+    .btn-primary{padding:10px 22px;background:var(--primary);color:var(--navy);border:none;border-radius:var(--radius-md);font-family:var(--font-head);font-weight:700;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px;font-size:0.88rem}
+    .btn-primary:hover{background:var(--primary-dark)}
+    @media(max-width:1024px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.sidebar{transform:translateX(-100%)}.main-content{margin-left:0}.chat-container{flex-direction:column;height:auto}.chat-sidebar-admin{width:100%;height:200px}}
+  </style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-text">Luxe<span>smile</span> <span class="admin-badge">ADMIN</span></div>
+    <div class="sidebar-logo-sub">Management Panel</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Dashboard</div>
+    <a class="nav-link-item active" data-section="overview" href="#"><i class="fas fa-th-large"></i> Overview</a>
+    <div class="nav-section-label">Operations</div>
+    <a class="nav-link-item" data-section="orders" href="#"><i class="fas fa-shopping-bag"></i> Orders <span class="nav-badge" id="pending-badge" style="display:none">0</span></a>
+    <a class="nav-link-item" data-section="appointments" href="#"><i class="fas fa-calendar-check"></i> Appointments</a>
+    <a class="nav-link-item" data-section="chat" href="#"><i class="fas fa-comments"></i> Live Chat <span class="nav-badge" id="chat-badge" style="display:none">0</span></a>
+    <div class="nav-section-label">Content</div>
+    <a class="nav-link-item" data-section="courses" href="#"><i class="fas fa-book-open"></i> Courses</a>
+    <a class="nav-link-item" data-section="customers" href="#"><i class="fas fa-users"></i> Customers</a>
+    <a class="nav-link-item" data-section="messages" href="#"><i class="fas fa-envelope"></i> Messages <span class="nav-badge" id="msg-badge" style="display:none">0</span></a>
+    <div class="nav-section-label">Site</div>
+    <a class="nav-link-item" href="/index.html" target="_blank"><i class="fas fa-external-link-alt"></i> View Website</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:10px;text-align:center" id="admin-name">Admin</div>
+    <button class="btn-logout" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+  </div>
+</aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <h2 class="topbar-title" id="page-title">Overview</h2>
+    <div style="display:flex;align-items:center;gap:14px">
+      <span id="current-time" style="font-size:0.8rem;color:var(--text-light)"></span>
+      <div style="font-size:0.85rem;font-weight:600;color:var(--navy)" id="admin-display"></div>
+    </div>
+  </header>
+
+  <div class="page-content">
+
+    <!-- ══ OVERVIEW ══ -->
+    <div class="section active" id="section-overview">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon si-green"><i class="fas fa-dollar-sign"></i></div><div><div class="stat-num" id="s-revenue">—</div><div class="stat-label">Total Revenue (KES)</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-gold"><i class="fas fa-shopping-bag"></i></div><div><div class="stat-num" id="s-orders">—</div><div class="stat-label">Total Orders</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-blue"><i class="fas fa-users"></i></div><div><div class="stat-num" id="s-customers">—</div><div class="stat-label">Customers</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-orange"><i class="fas fa-clock"></i></div><div><div class="stat-num" id="s-pending">—</div><div class="stat-label">Pending Orders</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-purple"><i class="fas fa-calendar"></i></div><div><div class="stat-num" id="s-appts">—</div><div class="stat-label">Appointments</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-red"><i class="fas fa-envelope"></i></div><div><div class="stat-num" id="s-msgs">—</div><div class="stat-label">New Messages</div></div></div>
+        <div class="stat-card"><div class="stat-icon si-green"><i class="fas fa-comments"></i></div><div><div class="stat-num" id="s-chats">—</div><div class="stat-label">Open Chats</div></div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">Recent Orders</span><button class="btn-sm btn-outline" onclick="navigate('orders')">View All</button></div>
+          <div id="recent-orders"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">Recent Appointments</span><button class="btn-sm btn-outline" onclick="navigate('appointments')">View All</button></div>
+          <div id="recent-appts"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ORDERS ══ -->
+    <div class="section" id="section-orders">
+      <div class="card">
+        <div class="card-header"><span class="card-title">All Orders</span><span id="orders-count" style="font-size:0.8rem;color:var(--text-light)"></span></div>
+        <div id="orders-table"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+      </div>
+    </div>
+
+    <!-- ══ APPOINTMENTS ══ -->
+    <div class="section" id="section-appointments">
+      <div class="card">
+        <div class="card-header"><span class="card-title">All Appointments</span></div>
+        <div id="appts-table"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+      </div>
+    </div>
+
+    <!-- ══ CHAT ══ -->
+    <div class="section" id="section-chat">
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="chat-container">
+          <div class="chat-sidebar-admin">
+            <div class="chat-sidebar-header">
+              <h4>Customer Conversations</h4>
+              <p style="font-size:0.75rem;color:var(--text-light);margin-top:3px">Click a conversation to reply</p>
+            </div>
+            <div class="chat-room-list" id="admin-room-list"></div>
+          </div>
+          <div class="chat-main" id="admin-chat-main">
+            <div class="chat-empty"><i class="fas fa-headset"></i><p>Select a conversation to start supporting customers</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ COURSES ══ -->
+    <div class="section" id="section-courses">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Courses & Learning Materials</span>
+          <button class="btn-sm btn-gold" onclick="openAddCourseModal()"><i class="fas fa-plus"></i> Add Course</button>
+        </div>
+        <div id="courses-table"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+      </div>
+    </div>
+
+    <!-- ══ CUSTOMERS ══ -->
+    <div class="section" id="section-customers">
+      <div class="card">
+        <div class="card-header"><span class="card-title">All Customers</span><span id="cust-count" style="font-size:0.8rem;color:var(--text-light)"></span></div>
+        <div id="customers-table"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+      </div>
+    </div>
+
+    <!-- ══ MESSAGES ══ -->
+    <div class="section" id="section-messages">
+      <div class="card">
+        <div class="card-header"><span class="card-title">Contact Messages</span></div>
+        <div id="messages-table"><div class="loading"><i class="fas fa-spinner"></i></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ORDER STATUS MODAL -->
+<div class="modal-overlay" id="order-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('order-modal')"><i class="fas fa-times"></i></button>
+    <h3 class="modal-title">Manage Order</h3>
+    <div id="order-modal-body"></div>
+  </div>
+</div>
+
+<!-- ADD COURSE MODAL -->
+<div class="modal-overlay" id="add-course-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('add-course-modal')"><i class="fas fa-times"></i></button>
+    <h3 class="modal-title">Add New Course</h3>
+    <form id="add-course-form">
+      <div class="form-group"><label>Title *</label><input type="text" id="c-title" required placeholder="Course title"></div>
+      <div class="form-group"><label>Description</label><textarea id="c-desc" rows="3" placeholder="Course description..."></textarea></div>
+      <div class="form-group"><label>Price (KES) *</label><input type="number" id="c-price" required placeholder="2500"></div>
+      <div class="form-group"><label>Category</label><input type="text" id="c-cat" placeholder="e.g. education, hygiene"></div>
+      <div class="form-group"><label>Download/Access URL</label><input type="url" id="c-url" placeholder="https://..."></div>
+      <button type="submit" class="btn-primary"><i class="fas fa-plus"></i> Add Course</button>
+    </form>
+  </div>
+</div>
+
+<!-- GRANT ACCESS MODAL -->
+<div class="modal-overlay" id="grant-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('grant-modal')"><i class="fas fa-times"></i></button>
+    <h3 class="modal-title" id="grant-modal-title">Grant Course Access</h3>
+    <div id="grant-modal-body"></div>
+  </div>
+</div>
+
+<script>
+const API = '/api';
+let authToken = localStorage.getItem('luxesmile_token');
+let adminUser = null;
+let socket = null;
+let activeRoomId = null;
+let allCustomers = [];
+
+(async function init() {
+  if (!authToken) { window.location.href = '/login'; return; }
+  try {
+    const res = await apiFetch('/auth/me');
+    if (!res.success || res.user.role !== 'admin') {
+      alert('Admin access required');
+      window.location.href = '/login'; return;
+    }
+    adminUser = res.user;
+    document.getElementById('admin-name').textContent = adminUser.name;
+    document.getElementById('admin-display').textContent = '👤 ' + adminUser.name;
+    loadStats();
+    initSocket();
+    setupNav();
+    updateClock();
+    setInterval(updateClock, 1000);
+  } catch(e) { window.location.href = '/login'; }
+})();
+
+function updateClock() {
+  document.getElementById('current-time').textContent = new Date().toLocaleTimeString('en-GB');
+}
+
+function setupNav() {
+  document.querySelectorAll('.nav-link-item[data-section]').forEach(l => {
+    l.addEventListener('click', e => { e.preventDefault(); navigate(l.dataset.section); });
+  });
+  document.getElementById('logout-btn').addEventListener('click', logout);
+}
+
+const titles = {overview:'Overview',orders:'Orders Management',appointments:'Appointments',chat:'Live Chat — Customer Support',courses:'Courses',customers:'Customers',messages:'Contact Messages'};
+
+function navigate(section) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-link-item').forEach(l => l.classList.remove('active'));
+  document.getElementById(`section-${section}`)?.classList.add('active');
+  document.querySelector(`[data-section="${section}"]`)?.classList.add('active');
+  document.getElementById('page-title').textContent = titles[section] || section;
+  if (section === 'orders') loadOrders();
+  if (section === 'appointments') loadAppointments();
+  if (section === 'chat') loadAdminChatRooms();
+  if (section === 'courses') loadCourses();
+  if (section === 'customers') loadCustomers();
+  if (section === 'messages') loadMessages();
+}
+
+async function apiFetch(endpoint, opts = {}) {
+  const res = await fetch(`${API}${endpoint}`, {
+    ...opts, headers: {'Content-Type':'application/json','Authorization':`Bearer ${authToken}`,...(opts.headers||{})}
+  });
+  return res.json();
+}
+
+async function loadStats() {
+  const res = await apiFetch('/orders/admin/stats');
+  if (!res.success) return;
+  const s = res.stats;
+  document.getElementById('s-revenue').textContent = 'KES ' + (s.totalRevenue||0).toLocaleString();
+  document.getElementById('s-orders').textContent = s.totalOrders;
+  document.getElementById('s-customers').textContent = s.totalCustomers;
+  document.getElementById('s-pending').textContent = s.pendingOrders;
+  document.getElementById('s-appts').textContent = s.totalAppointments;
+  document.getElementById('s-msgs').textContent = s.newMessages;
+  document.getElementById('s-chats').textContent = s.openChats;
+  if (s.pendingOrders > 0) { document.getElementById('pending-badge').textContent = s.pendingOrders; document.getElementById('pending-badge').style.display='inline'; }
+  if (s.newMessages > 0) { document.getElementById('msg-badge').textContent = s.newMessages; document.getElementById('msg-badge').style.display='inline'; }
+  if (s.openChats > 0) { document.getElementById('chat-badge').textContent = s.openChats; document.getElementById('chat-badge').style.display='inline'; }
+  loadRecentOverview();
+}
+
+async function loadRecentOverview() {
+  const [oRes, aRes] = await Promise.all([apiFetch('/orders/all'), apiFetch('/appointments/all')]);
+  const orders = (oRes.orders||[]).slice(0,5);
+  const appts = (aRes.appointments||[]).slice(0,5);
+
+  document.getElementById('recent-orders').innerHTML = orders.length ? `<table class="data-table"><thead><tr><th>ID</th><th>Customer</th><th>Total</th><th>Status</th></tr></thead><tbody>
+    ${orders.map(o=>`<tr><td style="font-size:0.74rem;font-family:monospace">#${o.id.slice(0,8).toUpperCase()}</td><td>${o.customer_name}</td><td>KES ${o.total.toLocaleString()}</td><td><span class="badge badge-${o.status}">${o.status}</span></td></tr>`).join('')}
+  </tbody></table>` : '<div class="empty-state"><i class="fas fa-inbox"></i><p>No orders yet</p></div>';
+
+  document.getElementById('recent-appts').innerHTML = appts.length ? `<table class="data-table"><thead><tr><th>Name</th><th>Service</th><th>Date</th><th>Status</th></tr></thead><tbody>
+    ${appts.map(a=>`<tr><td>${a.name}</td><td style="font-size:0.8rem">${a.service}</td><td>${a.date} ${a.time}</td><td><span class="badge badge-${a.status}">${a.status}</span></td></tr>`).join('')}
+  </tbody></table>` : '<div class="empty-state"><i class="fas fa-calendar"></i><p>No appointments yet</p></div>';
+}
+
+// ── ORDERS ────────────────────────────────────────────────────────────────────
+async function loadOrders() {
+  const el = document.getElementById('orders-table');
+  el.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i></div>';
+  const res = await apiFetch('/orders/all');
+  const orders = res.orders || [];
+  document.getElementById('orders-count').textContent = `${orders.length} total`;
+  if (!orders.length) { el.innerHTML = '<div class="empty-state"><i class="fas fa-box-open"></i><p>No orders yet</p></div>'; return; }
+
+  el.innerHTML = `<table class="data-table">
+    <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+      ${orders.map(o=>`
+        <tr>
+          <td style="font-family:monospace;font-size:0.78rem">#${o.id.slice(0,8).toUpperCase()}</td>
+          <td><div style="font-weight:600;color:var(--navy)">${o.customer_name}</div><div style="font-size:0.75rem;color:var(--text-light)">${o.customer_email}</div></td>
+          <td>${o.items.length} item${o.items.length!==1?'s':''}</td>
+          <td><strong>KES ${o.total.toLocaleString()}</strong></td>
+          <td><span style="font-size:0.78rem">${o.payment_method||'mpesa'}</span>${o.payment_ref?`<div style="font-size:0.7rem;color:var(--text-light)">${o.payment_ref}</div>`:''}</td>
+          <td style="font-size:0.8rem">${new Date(o.created_at).toLocaleDateString('en-GB')}</td>
+          <td><span class="badge badge-${o.status}">${o.status}</span></td>
+          <td><button class="btn-sm btn-navy" onclick="openOrderModal('${o.id}')"><i class="fas fa-cog"></i> Manage</button></td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>`;
+}
+
+async function openOrderModal(orderId) {
+  const res = await apiFetch(`/orders/${orderId}`);
+  if (!res.success) return;
+  const o = res.order;
+  document.getElementById('order-modal-body').innerHTML = `
+    <div style="margin-bottom:16px;padding:14px;background:var(--light-gray);border-radius:var(--radius-md)">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:4px">Customer: ${o.customer_name}</div>
+      <div style="font-size:0.82rem;color:var(--text-mid)">${o.customer_email}</div>
+    </div>
+    <table class="data-table" style="margin-bottom:16px">
+      <thead><tr><th>Item</th><th>Type</th><th>Qty</th><th>Price</th></tr></thead>
+      <tbody>${o.items.map(i=>`<tr><td>${i.name}</td><td><span class="badge badge-${i.type==='course'?'confirmed':'paid'}">${i.type}</span></td><td>${i.qty}</td><td>KES ${(i.price*i.qty).toLocaleString()}</td></tr>`).join('')}</tbody>
+    </table>
+    <div style="text-align:right;font-weight:800;font-size:1.05rem;color:var(--primary);margin-bottom:18px">Total: KES ${o.total.toLocaleString()}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+      <div class="form-group"><label>Update Status</label>
+        <select id="modal-status" class="status-select" style="width:100%;padding:9px">
+          ${['pending','confirmed','paid','processing','dispatched','delivered','cancelled'].map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${s.charAt(0).toUpperCase()+s.slice(1)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group"><label>Payment Reference</label><input type="text" id="modal-payref" value="${o.payment_ref||''}" placeholder="e.g. MPE12345"></div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="updateOrderStatus('${o.id}')"><i class="fas fa-check"></i> Update Status</button>
+      <button class="btn-sm btn-green" onclick="unlockAllCourses('${o.id}')"><i class="fas fa-unlock"></i> Unlock All Courses</button>
+    </div>
+    ${o.notes?`<div style="margin-top:14px;padding:10px;background:var(--light-gray);border-radius:8px;font-size:0.82rem;color:var(--text-mid)"><strong>Notes:</strong> ${o.notes}</div>`:''}
+  `;
+  document.getElementById('order-modal').classList.add('open');
+}
+
+async function updateOrderStatus(orderId) {
+  const status = document.getElementById('modal-status').value;
+  const payment_ref = document.getElementById('modal-payref').value;
+  const res = await apiFetch(`/orders/${orderId}/status`, { method:'PUT', body: JSON.stringify({status, payment_ref}) });
+  if (res.success) {
+    showToast(`Order ${status}!`, 'success');
+    closeModal('order-modal');
+    loadOrders();
+    loadStats();
+  } else showToast(res.message, 'error');
+}
+
+async function unlockAllCourses(orderId) {
+  const res = await apiFetch(`/orders/${orderId}/status`, { method:'PUT', body: JSON.stringify({status:'paid'}) });
+  if (res.success) { showToast('Courses unlocked for customer!', 'success'); closeModal('order-modal'); }
+  else showToast(res.message, 'error');
+}
+
+// ── APPOINTMENTS ──────────────────────────────────────────────────────────────
+async function loadAppointments() {
+  const el = document.getElementById('appts-table');
+  el.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i></div>';
+  const res = await apiFetch('/appointments/all');
+  const appts = res.appointments || [];
+  if (!appts.length) { el.innerHTML = '<div class="empty-state"><i class="fas fa-calendar-times"></i><p>No appointments</p></div>'; return; }
+  el.innerHTML = `<table class="data-table">
+    <thead><tr><th>Name</th><th>Service</th><th>Date & Time</th><th>Phone</th><th>Email</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+      ${appts.map(a=>`
+        <tr>
+          <td><strong>${a.name}</strong></td>
+          <td>${a.service}</td>
+          <td>${a.date} <br><span style="font-size:0.78rem;color:var(--text-light)">${a.time}</span></td>
+          <td><a href="tel:${a.phone}" style="color:var(--primary)">${a.phone}</a></td>
+          <td style="font-size:0.8rem">${a.email}</td>
+          <td><span class="badge badge-${a.status}">${a.status}</span></td>
+          <td>
+            <select class="status-select" onchange="updateApptStatus('${a.id}',this.value)">
+              ${['pending','confirmed','completed','cancelled','rescheduled'].map(s=>`<option ${a.status===s?'selected':''} value="${s}">${s}</option>`).join('')}
+            </select>
+          </td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>`;
+}
+
+async function updateApptStatus(id, status) {
+  const res = await apiFetch(`/appointments/${id}/status`, { method:'PUT', body:JSON.stringify({status}) });
+  if (res.success) showToast(`Appointment ${status}`, 'success');
+  else showToast(res.message, 'error');
+}
+
+// ── ADMIN CHAT ─────────────────────────────────────────────────────────────────
+async function loadAdminChatRooms() {
+  const res = await apiFetch('/chat/rooms');
+  const rooms = res.rooms || [];
+  const el = document.getElementById('admin-room-list');
+  if (!rooms.length) { el.innerHTML = '<div style="padding:16px;text-align:center;font-size:0.82rem;color:var(--text-light)">No conversations yet</div>'; return; }
+  el.innerHTML = rooms.map(r=>`
+    <div class="chat-room-item" onclick="openAdminRoom('${r.id}','${r.customer_name}','${r.customer_email}')">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+        <div class="room-customer">${r.customer_name}</div>
+        ${r.unread>0?`<span class="unread-badge">${r.unread}</span>`:''}
+      </div>
+      <div class="room-preview">${r.last_message||'No messages yet'}</div>
+      <div style="display:flex;justify-content:space-between;margin-top:4px">
+        <span class="badge badge-${r.status}" style="font-size:0.66rem">${r.status}</span>
+        <span style="font-size:0.7rem;color:var(--text-light)">${formatTime(r.updated_at)}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function openAdminRoom(roomId, customerName, customerEmail) {
+  activeRoomId = roomId;
+  document.querySelectorAll('.chat-room-item').forEach(i=>i.classList.remove('active'));
+  document.querySelector(`[onclick*="${roomId}"]`)?.classList.add('active');
+
+  const res = await apiFetch(`/chat/room/${roomId}/messages`);
+  const messages = res.messages || [];
+
+  document.getElementById('admin-chat-main').innerHTML = `
+    <div class="chat-main-header">
+      <div>
+        <h4 style="font-family:var(--font-head);font-size:0.9rem;font-weight:700;color:var(--navy)">${customerName}</h4>
+        <span style="font-size:0.75rem;color:var(--text-light)">${customerEmail}</span>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn-sm btn-outline" onclick="closeAdminRoom('${roomId}')"><i class="fas fa-times"></i> Close Chat</button>
+      </div>
+    </div>
+    <div class="chat-messages" id="admin-chat-messages">${renderAdminMessages(messages)}</div>
+    <div class="typing-indicator" id="admin-typing" style="display:none;padding:0 18px 8px;font-size:0.75rem;color:var(--text-light);font-style:italic">Customer is typing...</div>
+    <div class="chat-input-area">
+      <textarea id="admin-chat-input" placeholder="Type your reply..." rows="1" onkeydown="handleAdminChatKey(event)"></textarea>
+      <button class="btn-send" onclick="sendAdminMessage()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  `;
+
+  const el = document.getElementById('admin-chat-messages');
+  if (el) el.scrollTop = el.scrollHeight;
+  if (socket) socket.emit('chat:join', roomId);
+}
+
+function renderAdminMessages(messages) {
+  if (!messages.length) return '<div class="chat-empty"><i class="fas fa-comments"></i><p>No messages yet. Be the first to reach out!</p></div>';
+  return messages.map(m=>{
+    const isAdmin = m.sender_role === 'admin';
+    return `<div class="msg-bubble ${isAdmin?'admin':'customer'}">
+      ${!isAdmin?`<div class="msg-sender">${m.sender_name}</div>`:''}
+      <div class="msg-text">${escapeHtml(m.message)}</div>
+      <div class="msg-time">${formatTime(m.created_at)}</div>
+    </div>`;
+  }).join('');
+}
+
+async function sendAdminMessage() {
+  const input = document.getElementById('admin-chat-input');
+  if (!input || !activeRoomId) return;
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+
+  if (socket && socket.connected) {
+    socket.emit('chat:send', { roomId: activeRoomId, message: msg });
+  } else {
+    const res = await apiFetch(`/chat/room/${activeRoomId}/send`, { method:'POST', body:JSON.stringify({message:msg}) });
+    if (res.success) appendAdminMessage(res.message, true);
+    else showToast('Failed to send', 'error');
+  }
+}
+
+function handleAdminChatKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAdminMessage(); }
+}
+
+function appendAdminMessage(msg, isAdmin) {
+  const c = document.getElementById('admin-chat-messages');
+  if (!c) return;
+  const empty = c.querySelector('.chat-empty');
+  if (empty) empty.remove();
+  const div = document.createElement('div');
+  div.className = `msg-bubble ${isAdmin?'admin':'customer'}`;
+  div.innerHTML = `${!isAdmin?`<div class="msg-sender">${msg.sender_name}</div>`:''}
+    <div class="msg-text">${escapeHtml(msg.message)}</div>
+    <div class="msg-time">${formatTime(msg.created_at)}</div>`;
+  c.appendChild(div);
+  c.scrollTop = c.scrollHeight;
+}
+
+async function closeAdminRoom(roomId) {
+  const res = await apiFetch(`/chat/room/${roomId}/close`, {method:'PUT'});
+  if (res.success) { showToast('Chat closed', 'info'); loadAdminChatRooms(); }
+}
+
+// ── COURSES ────────────────────────────────────────────────────────────────────
+async function loadCourses() {
+  const el = document.getElementById('courses-table');
+  el.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i></div>';
+  const res = await apiFetch('/courses');
+  const courses = res.courses || [];
+  if (!courses.length) { el.innerHTML = '<div class="empty-state"><i class="fas fa-book"></i><p>No courses yet. Add one above.</p></div>'; return; }
+  el.innerHTML = `<table class="data-table">
+    <thead><tr><th>Title</th><th>Category</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>
+      ${courses.map(c=>`<tr>
+        <td><strong>${c.title}</strong><div style="font-size:0.78rem;color:var(--text-light);margin-top:2px">${(c.description||'').slice(0,60)}...</div></td>
+        <td>${c.category||'—'}</td>
+        <td>KES ${c.price.toLocaleString()}</td>
+        <td><span class="badge ${c.is_active?'badge-paid':'badge-cancelled'}">${c.is_active?'Active':'Inactive'}</span></td>
+        <td style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="btn-sm btn-gold" onclick="openGrantModal('${c.id}','${c.title}')"><i class="fas fa-unlock"></i> Grant Access</button>
+        </td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+function openAddCourseModal() { document.getElementById('add-course-modal').classList.add('open'); }
+
+document.getElementById('add-course-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const res = await apiFetch('/courses', { method:'POST', body:JSON.stringify({
+    title: document.getElementById('c-title').value,
+    description: document.getElementById('c-desc').value,
+    price: parseFloat(document.getElementById('c-price').value),
+    category: document.getElementById('c-cat').value,
+    download_url: document.getElementById('c-url').value,
+  })});
+  if (res.success) { showToast('Course added!','success'); closeModal('add-course-modal'); loadCourses(); document.getElementById('add-course-form').reset(); }
+  else showToast(res.message,'error');
+});
+
+async function openGrantModal(courseId, title) {
+  const res = await apiFetch('/contact/customers');
+  const customers = res.customers || [];
+  allCustomers = customers;
+  document.getElementById('grant-modal-title').textContent = `Grant Access: ${title}`;
+  document.getElementById('grant-modal-body').innerHTML = `
+    <div style="margin-bottom:14px">
+      <div class="form-group"><label>Select Customer</label>
+        <select id="grant-customer" style="width:100%;padding:9px;border:1.5px solid var(--mid-gray);border-radius:var(--radius-md);font-family:var(--font-body);outline:none">
+          <option value="">-- Select customer --</option>
+          ${customers.map(c=>`<option value="${c.id}">${c.name} (${c.email})</option>`).join('')}
+        </select>
+      </div>
+      <button class="btn-primary" onclick="submitGrant('${courseId}')"><i class="fas fa-unlock"></i> Grant Access</button>
+    </div>
+  `;
+  document.getElementById('grant-modal').classList.add('open');
+}
+
+async function submitGrant(courseId) {
+  const userId = document.getElementById('grant-customer').value;
+  if (!userId) { showToast('Please select a customer','error'); return; }
+  const res = await apiFetch(`/courses/${courseId}/grant`, {method:'POST',body:JSON.stringify({user_id:userId})});
+  if (res.success) { showToast('Course access granted!','success'); closeModal('grant-modal'); }
+  else showToast(res.message,'error');
+}
+
+// ── CUSTOMERS ─────────────────────────────────────────────────────────────────
+async function loadCustomers() {
+  const el = document.getElementById('customers-table');
+  el.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i></div>';
+  const res = await apiFetch('/contact/customers');
+  const customers = res.customers || [];
+  document.getElementById('cust-count').textContent = `${customers.length} registered`;
+  if (!customers.length) { el.innerHTML = '<div class="empty-state"><i class="fas fa-users"></i><p>No customers yet</p></div>'; return; }
+  el.innerHTML = `<table class="data-table">
+    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Joined</th><th>Last Login</th></tr></thead>
+    <tbody>
+      ${customers.map(c=>`<tr>
+        <td><strong>${c.name}</strong></td>
+        <td><a href="mailto:${c.email}" style="color:var(--primary)">${c.email}</a></td>
+        <td>${c.phone||'—'}</td>
+        <td style="font-size:0.8rem">${new Date(c.created_at).toLocaleDateString('en-GB')}</td>
+        <td style="font-size:0.8rem">${c.last_login?new Date(c.last_login).toLocaleDateString('en-GB'):'Never'}</td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+// ── MESSAGES ──────────────────────────────────────────────────────────────────
+async function loadMessages() {
+  const el = document.getElementById('messages-table');
+  el.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i></div>';
+  const res = await apiFetch('/contact/messages');
+  const msgs = res.messages || [];
+  if (!msgs.length) { el.innerHTML = '<div class="empty-state"><i class="fas fa-envelope-open"></i><p>No messages yet</p></div>'; return; }
+  el.innerHTML = `<table class="data-table">
+    <thead><tr><th>From</th><th>Subject</th><th>Message</th><th>Date</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      ${msgs.map(m=>`<tr>
+        <td><strong>${m.name}</strong><br><a href="mailto:${m.email}" style="color:var(--primary);font-size:0.78rem">${m.email}</a>${m.phone?`<br><span style="font-size:0.75rem;color:var(--text-light)">${m.phone}</span>`:''}</td>
+        <td>${m.subject||'—'}</td>
+        <td style="max-width:240px;font-size:0.83rem;color:var(--text-mid)">${m.message.slice(0,100)}${m.message.length>100?'...':''}</td>
+        <td style="font-size:0.78rem">${new Date(m.created_at).toLocaleDateString('en-GB')}</td>
+        <td><span class="badge badge-${m.status}">${m.status}</span></td>
+        <td><button class="btn-sm btn-outline" onclick="markRead('${m.id}')"><i class="fas fa-check"></i></button>
+        <a href="mailto:${m.email}?subject=Re: ${encodeURIComponent(m.subject||'Your Inquiry')}" class="btn-sm btn-gold" style="text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-left:4px"><i class="fas fa-reply"></i> Reply</a></td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+async function markRead(id) {
+  await apiFetch(`/contact/messages/${id}/read`, {method:'PUT'});
+  loadMessages(); loadStats();
+}
+
+// ── SOCKET.IO ──────────────────────────────────────────────────────────────────
+function initSocket() {
+  socket = io({auth:{token:authToken}});
+  socket.on('connect', ()=>console.log('Admin socket connected'));
+  socket.on('chat:message', msg => {
+    if (msg.room_id === activeRoomId && msg.sender_role !== 'admin') {
+      appendAdminMessage(msg, false);
+    }
+    loadAdminChatRooms();
+  });
+  socket.on('chat:new_customer_message', data => {
+    showToast(`New message from ${data.customerName}`, 'info');
+    document.getElementById('chat-badge').textContent = parseInt(document.getElementById('chat-badge').textContent||'0') + 1;
+    document.getElementById('chat-badge').style.display = 'inline';
+    loadAdminChatRooms();
+  });
+  socket.on('chat:typing', data => {
+    const t = document.getElementById('admin-typing');
+    if (t && data.roomId === activeRoomId && data.isTyping) {
+      t.style.display = 'block';
+      setTimeout(()=>{ if(t) t.style.display='none'; }, 2500);
+    }
+  });
+  if (activeRoomId) socket.emit('chat:join', activeRoomId);
+}
+
+function showToast(msg, type='info') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  const icons = {success:'fa-check-circle',error:'fa-exclamation-circle',info:'fa-info-circle'};
+  t.innerHTML = `<i class="fas ${icons[type]||'fa-info-circle'}"></i><span>${msg}</span>`;
+  c.appendChild(t);
+  setTimeout(()=>t.remove(), 4000);
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function formatTime(ts) {
+  if (!ts) return '';
+  const d = new Date(ts + (ts.includes('Z')?'':'Z'));
+  const now = new Date();
+  const diff = (now-d)/1000;
+  if (diff<60) return 'just now';
+  if (diff<3600) return Math.floor(diff/60)+'m ago';
+  if (diff<86400) return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+}
+function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function logout() { localStorage.clear(); window.location.href='/login'; }
+
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target===o) o.classList.remove('open'); });
+});
+</script>
+</body>
+</html>

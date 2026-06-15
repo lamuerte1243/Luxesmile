@@ -414,16 +414,81 @@
   const dateInput = document.getElementById('c-date');
   if (dateInput) dateInput.min = today;
 
-  // Override default form handler for main form to show success state
-  document.getElementById('main-contact-form')?.addEventListener('submit', (e) => {
+  const API = '/api';
+
+  // REAL Appointment booking form
+  document.getElementById('main-contact-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-    setTimeout(() => {
-      document.getElementById('form-content').style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    }, 1800);
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
+
+    const fname = document.getElementById('c-fname').value.trim();
+    const lname = document.getElementById('c-lname').value.trim();
+    const phone = document.getElementById('c-phone').value.trim();
+    const email = document.getElementById('c-email').value.trim();
+    const service = document.getElementById('c-service').value;
+    const date = document.getElementById('c-date').value;
+    const time = document.getElementById('c-time').value;
+    const notes = document.getElementById('c-notes').value.trim();
+
+    try {
+      const token = localStorage.getItem('luxesmile_token');
+      const res = await fetch(`${API}/appointments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...(token ? {'Authorization': `Bearer ${token}`} : {}) },
+        body: JSON.stringify({ name: `${fname} ${lname}`, email, phone, service, date, time, message: notes })
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('form-content').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Appointment Request';
+        showToast(data.message || 'Booking failed. Please try again.', 'error', 'fa-exclamation-circle');
+      }
+    } catch(err) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Appointment Request';
+      showToast('Network error. Please try again.', 'error', 'fa-exclamation-circle');
+    }
+  });
+
+  // REAL General Contact Message form
+  document.querySelector('form[data-form="contact"]')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const inputs = e.target.querySelectorAll('input, textarea');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+    const name = inputs[0].value.trim();
+    const contact = inputs[1].value.trim();
+    const message = e.target.querySelector('textarea').value.trim();
+    const email = contact.includes('@') ? contact : 'noemail@luxesmile.co.ke';
+    const phone = contact.includes('@') ? null : contact;
+
+    try {
+      const res = await fetch(`${API}/contact/message`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, subject: 'Website Contact Form', message })
+      });
+      const data = await res.json();
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      if (data.success) {
+        e.target.reset();
+        showToast(data.message, 'success', 'fa-check-circle');
+      } else {
+        showToast(data.message || 'Failed to send', 'error', 'fa-exclamation-circle');
+      }
+    } catch(err) {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      showToast('Network error. Please try again.', 'error', 'fa-exclamation-circle');
+    }
   });
 </script>
 </body>
