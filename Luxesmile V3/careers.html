@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers — Join Luxesmile Dental Clinic Nairobi</title>
+  <meta name="description" content="Join Nairobi's leading dental team at Luxesmile. Browse open dental positions — dentists, orthodontists, hygienists, and administrative roles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .benefit-card {
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      transition: all var(--transition-base);
+    }
+    .benefit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--primary); }
+    .benefit-icon {
+      width: 52px; height: 52px;
+      background: var(--primary-bg);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      transition: all var(--transition-base);
+    }
+    .benefit-card:hover .benefit-icon { background: var(--primary); color: var(--navy); }
+    .benefit-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .benefit-card p { font-size: 0.85rem; color: var(--text-light); margin: 0; line-height: 1.6; }
+
+    .job-listing {
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      transition: all var(--transition-base);
+    }
+    .job-listing:hover { box-shadow: var(--shadow-md); border-color: var(--primary); }
+    .job-icon {
+      width: 56px; height: 56px;
+      background: var(--primary-bg);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary);
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      transition: all var(--transition-base);
+    }
+    .job-listing:hover .job-icon { background: var(--primary); color: var(--navy); }
+    .job-info { flex: 1; }
+    .job-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .job-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .job-tag {
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.74rem;
+      font-weight: 600;
+    }
+    .job-tag-type { background: var(--primary-bg); color: var(--primary); }
+    .job-tag-dept { background: var(--light-gray); color: var(--text-mid); }
+    .job-tag-location { background: var(--navy); color: var(--white); }
+
+    .culture-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .culture-quote {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+    .culture-quote p {
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .culture-quote-author {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .culture-avatar {
+      width: 40px; height: 40px; border-radius: 50%; overflow: hidden;
+      border: 2px solid var(--primary);
+    }
+    .culture-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .culture-author-info strong { display: block; font-size: 0.85rem; color: var(--white); }
+    .culture-author-info span { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+    .hero-stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      background: var(--primary);
+      margin-top: 48px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .hero-stat-item {
+      padding: 24px;
+      text-align: center;
+      border-right: 1px solid rgba(15,23,42,0.1);
+    }
+    .hero-stat-item:last-child { border-right: none; }
+    .hero-stat-item strong { display: block; font-size: 1.8rem; font-weight: 900; color: var(--navy); font-family: var(--font-head); }
+    .hero-stat-item span { font-size: 0.8rem; color: var(--navy); opacity: 0.7; font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+      .culture-grid { grid-template-columns: 1fr; }
+      .job-listing { flex-wrap: wrap; }
+      .hero-stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <div class="top-info"><i class="fas fa-map-marker-alt"></i><span>Ruiru &amp; Ruai, Nairobi, Kenya</span></div>
+        <div class="top-info"><i class="fas fa-clock"></i><span>Mon–Sat: 8:00 AM – 7:00 PM</span></div>
+      </div>
+      <div class="top-bar-right">
+        <div class="top-info"><i class="fas fa-phone"></i><a href="tel:+254700123456">+254 700 123 456</a></div>
+        <div class="top-social">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="main-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🦷</div>
+        <div><div class="nav-logo-text">Luxe<span>smile</span></div><span class="nav-logo-sub">Dental Clinic · Nairobi</span></div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+        <li class="nav-item"><a href="careers.html" class="nav-link active">Careers</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+        <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero" style="padding:80px 0 60px;">
+  <div class="container">
+    <nav class="breadcrumb" style="margin-bottom:20px;">
+      <a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span class="current">Careers</span>
+    </nav>
+    <div class="section-label" style="color:var(--primary);">Join Our Team</div>
+    <h1 class="page-hero-title">Build Your Career at <span>Luxesmile</span></h1>
+    <p style="color:rgba(255,255,255,0.65);max-width:560px;margin-top:12px;font-size:1.05rem;">Join Nairobi's most dynamic dental team. We're passionate professionals who believe great dentistry starts with great people.</p>
+
+    <!-- Stats Bar -->
+    <div class="hero-stats-bar reveal">
+      <div class="hero-stat-item"><strong>8</strong><span>Dentists on Team</span></div>
+      <div class="hero-stat-item"><strong>12+</strong><span>Years in Business</span></div>
+      <div class="hero-stat-item"><strong>6</strong><span>Open Positions</span></div>
+      <div class="hero-stat-item"><strong>98%</strong><span>Staff Retention</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Join Us -->
+<section class="section" style="background:var(--off-white);">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <div class="section-label">Why Work With Us</div>
+        <h2>A Place Where Careers and Compassion Thrive</h2>
+        <p>At Luxesmile, we don't just hire employees — we invest in people. We believe that happy, fulfilled dental professionals deliver better patient care. That's why we've built a workplace culture that prioritizes growth, wellbeing, and excellence in equal measure.</p>
+        <p style="margin-top:16px;">Whether you're a newly graduated dentist looking for mentorship, an experienced specialist seeking a modern environment, or a support professional wanting to make a difference in healthcare — Luxesmile has a place for you.</p>
+        <div style="margin-top:32px;">
+          <a href="#open-roles" class="btn btn-primary"><i class="fas fa-briefcase"></i> View Open Positions</a>
+        </div>
+      </div>
+      <div class="reveal-right" data-delay="200">
+        <div style="border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:4/3;background:var(--light-gray);">
+          <img src="Luxesmile.jpg" alt="Luxesmile dental team working together in Nairobi" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Employee Benefits</div>
+      <h2>Why Our Team Loves Working Here</h2>
+      <p>We offer more than just a salary — we invest in your professional growth, health, and happiness.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal" data-delay="0">
+        <div class="benefit-icon"><i class="fas fa-graduation-cap"></i></div>
+        <h4>Continuous Learning</h4>
+        <p>Fully-funded CPD courses, international conference attendance, and access to global dental training programs to keep your skills cutting-edge.</p>
+      </div>
+      <div class="benefit-card reveal" data-delay="100">
+        <div class="benefit-icon"><i class="fas fa-hand-holding-heart"></i></div>
+        <h4>Health & Dental Cover</h4>
+        <p>Full medical and dental insurance coverage for you and your immediate family, including access to Luxesmile's own specialist services at no cost.</p>
+      </div>
+      <div class="benefit-card reveal" data-delay="200">
+        <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+        <h4>Competitive Salary & Growth</h4>
+        <p>Market-leading salaries with performance bonuses, transparent promotion pathways, and annual reviews tied to impact — not just seniority.</p>
+      </div>
+      <div class="benefit-card reveal" data-delay="0">
+        <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+        <h4>Flexible Working Hours</h4>
+        <p>We understand life happens outside the clinic. Flexible shift patterns, time-off requests honoured, and part-time options for parents and caregivers.</p>
+      </div>
+      <div class="benefit-card reveal" data-delay="100">
+        <div class="benefit-icon"><i class="fas fa-microscope"></i></div>
+        <h4>Modern Equipment</h4>
+        <p>Work with the latest dental technology — CBCT scanners, digital impressions, laser dentistry, and AI-assisted diagnostics. No outdated equipment here.</p>
+      </div>
+      <div class="benefit-card reveal" data-delay="200">
+        <div class="benefit-icon"><i class="fas fa-users"></i></div>
+        <h4>Supportive Team Culture</h4>
+        <p>A genuinely collaborative, diverse, and inclusive team where everyone's voice matters. Monthly team events, mentorship programs, and real leadership support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Open Roles -->
+<section class="section" style="background:var(--off-white);" id="open-roles">
+  <div class="container">
+    <div class="section-header reveal" style="margin-bottom:var(--space-lg);">
+      <div class="section-label">Open Positions</div>
+      <h2>Current Job Openings at Luxesmile</h2>
+      <p>All roles are based at our Ruiru and Ruai clinics in Nairobi. We welcome applications from across Kenya and the East Africa region.</p>
+    </div>
+
+    <!-- Job Listings -->
+    <div id="jobs-list">
+      <div class="job-listing reveal" data-delay="0">
+        <div class="job-icon"><i class="fas fa-tooth"></i></div>
+        <div class="job-info">
+          <h4>Senior Dentist / Associate Dentist</h4>
+          <p style="font-size:0.86rem;color:var(--text-mid);margin:4px 0 0;">We're looking for an experienced BDS-qualified dentist to join our busy general dentistry department. Implant experience is an advantage. Mentorship of junior team members expected.</p>
+          <div class="job-tags">
+            <span class="job-tag job-tag-type">Full-Time</span>
+            <span class="job-tag job-tag-dept">Clinical</span>
+            <span class="job-tag job-tag-location"><i class="fas fa-map-marker-alt" style="font-size:0.65rem;"></i> Nairobi</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" data-apply-job="Senior Dentist" onclick="applyForJob('Senior Dentist')">Apply Now</button>
+      </div>
+
+      <div class="job-listing reveal" data-delay="100">
+        <div class="job-icon"><i class="fas fa-smile"></i></div>
+        <div class="job-info">
+          <h4>Orthodontist (Specialist)</h4>
+          <p style="font-size:0.86rem;color:var(--text-mid);margin:4px 0 0;">Certified orthodontist required to lead our growing orthodontic department. Invisalign certification preferred. Excellent patient communication skills essential.</p>
+          <div class="job-tags">
+            <span class="job-tag job-tag-type">Full-Time</span>
+            <span class="job-tag job-tag-dept">Specialist</span>
+            <span class="job-tag job-tag-location"><i class="fas fa-map-marker-alt" style="font-size:0.65rem;"></i> Nairobi</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyForJob('Orthodontist')">Apply Now</button>
+      </div>
+
+      <div class="job-listing reveal" data-delay="200">
+        <div class="job-icon"><i class="fas fa-star"></i></div>
+        <div class="job-info">
+          <h4>Dental Hygienist</h4>
+          <p style="font-size:0.86rem;color:var(--text-mid);margin:4px 0 0;">Qualified dental hygienist to handle preventive care, scaling, polishing, and patient oral health education. At least 2 years clinical experience required.</p>
+          <div class="job-tags">
+            <span class="job-tag job-tag-type">Full-Time</span>
+            <span class="job-tag job-tag-dept">Clinical</span>
+            <span class="job-tag job-tag-location"><i class="fas fa-map-marker-alt" style="font-size:0.65rem;"></i> Nairobi</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyForJob('Dental Hygienist')">Apply Now</button>
+      </div>
+
+      <div class="job-listing reveal" data-delay="0">
+        <div class="job-icon"><i class="fas fa-vials"></i></div>
+        <div class="job-info">
+          <h4>Dental Laboratory Technician</h4>
+          <p style="font-size:0.86rem;color:var(--text-mid);margin:4px 0 0;">Experienced lab tech to work in our on-site laboratory crafting crowns, veneers, dentures, and orthodontic appliances. CAD/CAM experience is a strong advantage.</p>
+          <div class="job-tags">
+            <span class="job-tag job-tag-type">Full-Time</span>
+            <span class="job-tag job-tag-dept">Laboratory</span>
+            <span class="job-tag job-tag-location"><i class="fas fa-map-marker-alt" style="font-size:0.65rem;"></i> Nairobi</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyForJob('Dental Laboratory Technician')">Apply Now</button>
+      </div>
+
+      <div class="job-listing reveal" data-delay="100">
+        <div class="job-icon"><i class="fas fa-headset"></i></div>
+        <div class="job-info">
+          <h4>Patient Coordinator / Receptionist</h4>
+          <p style="font-size:0.86rem;color:var(--text-mid);margin:4px 0 0;">The face of Luxesmile! You'll manage appointments, patient queries, billing, and insurance claims. Excellent communication skills and experience in a medical or hospitality setting essential.</p>
+          <div class="job-tags">
+            <span class="job-tag job-tag-type">Full-Time</span>
+            <span class="job-tag job-tag-dept">Administration</span>
+            <span class="job-tag job-tag-location"><i class="fas fa-map-marker-alt" style="font-size:0.65rem;"></i> Nairobi</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyForJob('Patient Coordinator')">Apply Now</button>
+      </div>
+
+      <div class="job-listing reveal" data-delay="200">
+        <div class="job-icon"><i class="fas fa-camera"></i></div>
+        <div class="job-info">
+          <h4>Digital Marketing & Social Media Manager</h4>
+          <p style="font-size:0.86rem;color:var(--text-mid);margin:4px 0 0;">Creative digital marketer to grow Luxesmile's online presence across Instagram, TikTok, and Google. Content creation, paid ads, SEO, and email marketing experience required.</p>
+          <div class="job-tags">
+            <span class="job-tag job-tag-type">Full-Time</span>
+            <span class="job-tag job-tag-dept">Marketing</span>
+            <span class="job-tag job-tag-location"><i class="fas fa-map-marker-alt" style="font-size:0.65rem;"></i> Nairobi (Hybrid)</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyForJob('Digital Marketing Manager')">Apply Now</button>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;padding:24px;background:var(--white);border-radius:var(--radius-lg);border:1px dashed var(--mid-gray);" class="reveal">
+      <p style="font-size:0.9rem;color:var(--text-mid);">Don't see a role that fits? We're always interested in meeting talented dental professionals.</p>
+      <a href="mailto:careers@luxesmile.co.ke" class="btn btn-outline btn-sm" style="margin-top:12px;"><i class="fas fa-envelope"></i> Send a Speculative Application</a>
+    </div>
+  </div>
+</section>
+
+<!-- Team Culture Testimonials -->
+<section class="testimonials-section section">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label" style="color:var(--primary);">Life at Luxesmile</div>
+      <h2 style="color:var(--white);">Hear From Our Team</h2>
+    </div>
+
+    <div class="culture-grid">
+      <div class="culture-quote reveal" data-delay="0">
+        <p>"Joining Luxesmile was the best career decision I've made. The technology we work with is incredible, and the management genuinely listens. I've grown more professionally in 2 years here than in my previous 4 years combined."</p>
+        <div class="culture-quote-author">
+          <div class="culture-avatar"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=100&q=80&fit=crop&crop=face" alt="Dr. James Oduya"></div>
+          <div class="culture-author-info"><strong>Dr. James Oduya</strong><span>Associate Dentist · 2 years at Luxesmile</span></div>
+        </div>
+      </div>
+      <div class="culture-quote reveal" data-delay="150">
+        <p>"As a patient coordinator, I was worried I'd just be a 'receptionist'. At Luxesmile, I'm part of the care team. I get training, my opinions are valued, and I genuinely love coming to work every day. The team feels like family."</p>
+        <div class="culture-quote-author">
+          <div class="culture-avatar"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80&fit=crop&crop=face" alt="Mercy Akinyi"></div>
+          <div class="culture-author-info"><strong>Mercy Akinyi</strong><span>Patient Coordinator · 3 years at Luxesmile</span></div>
+        </div>
+      </div>
+      <div class="culture-quote reveal" data-delay="0">
+        <p>"The CPD budget alone is worth it. I've attended courses in Dubai, South Africa, and the UK — all fully funded. Luxesmile takes clinical excellence very seriously, and they back it up with investment in their team's education."</p>
+        <div class="culture-quote-author">
+          <div class="culture-avatar"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=100&q=80&fit=crop&crop=face" alt="Dr. Asha Muthoni"></div>
+          <div class="culture-author-info"><strong>Dr. Asha Muthoni</strong><span>Oral Surgeon · 4 years at Luxesmile</span></div>
+        </div>
+      </div>
+      <div class="culture-quote reveal" data-delay="150">
+        <p>"I was fresh out of university when they hired me as a dental hygienist. The mentorship I received in my first year was exceptional. Now I train new hygienists myself. The growth path is real and the culture is genuinely supportive."</p>
+        <div class="culture-quote-author">
+          <div class="culture-avatar"><img src="https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?w=100&q=80&fit=crop&crop=face" alt="Sylvia Kamau"></div>
+          <div class="culture-author-info"><strong>Sylvia Kamau</strong><span>Senior Dental Hygienist · 5 years at Luxesmile</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Application Form -->
+<section class="appointment-section section" id="career-form">
+  <div class="container">
+    <div class="appointment-grid">
+      <div class="reveal-left">
+        <div class="section-label">Apply Now</div>
+        <h2>Ready to Join the Luxesmile Family?</h2>
+        <p>Submit your application below and our HR team will review it within 5 business days. Shortlisted candidates will be invited for an interview — either in-person or via video call.</p>
+
+        <div style="display:flex;flex-direction:column;gap:16px;margin-top:32px;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:44px;height:44px;background:var(--primary-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;flex-shrink:0;"><i class="fas fa-paper-plane"></i></div>
+            <div><strong style="display:block;font-size:0.9rem;font-weight:700;">Submit Application</strong><span style="font-size:0.82rem;color:var(--text-light);">Fill the form with your CV and cover letter</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:44px;height:44px;background:var(--primary-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;flex-shrink:0;"><i class="fas fa-phone"></i></div>
+            <div><strong style="display:block;font-size:0.9rem;font-weight:700;">HR Review (5 Days)</strong><span style="font-size:0.82rem;color:var(--text-light);">Our HR team reviews all applications personally</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:44px;height:44px;background:var(--primary-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;flex-shrink:0;"><i class="fas fa-comments"></i></div>
+            <div><strong style="display:block;font-size:0.9rem;font-weight:700;">Interview Invitation</strong><span style="font-size:0.82rem;color:var(--text-light);">Shortlisted candidates invited within 2 weeks</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:44px;height:44px;background:var(--primary-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1rem;flex-shrink:0;"><i class="fas fa-handshake"></i></div>
+            <div><strong style="display:block;font-size:0.9rem;font-weight:700;">Offer & Onboarding</strong><span style="font-size:0.82rem;color:var(--text-light);">Join the team with full onboarding support</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top:28px;padding:20px 24px;background:var(--light-gray);border-radius:var(--radius-lg);">
+          <p style="font-size:0.85rem;color:var(--text-mid);margin:0;"><i class="fas fa-envelope" style="color:var(--primary);margin-right:8px;"></i>Or email your CV directly to: <a href="mailto:careers@luxesmile.co.ke" style="color:var(--primary);font-weight:600;">careers@luxesmile.co.ke</a></p>
+        </div>
+      </div>
+
+      <div class="reveal-right" data-delay="200">
+        <div class="appointment-form-wrap">
+          <div class="form-title">Job Application Form</div>
+          <p class="form-subtitle">All fields marked * are required</p>
+          <form data-form="careers">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>First Name *</label>
+                <input type="text" placeholder="First name" required>
+              </div>
+              <div class="form-group">
+                <label>Last Name *</label>
+                <input type="text" placeholder="Last name" required>
+              </div>
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" placeholder="+254 700 000 000" required>
+              </div>
+              <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" placeholder="your@email.com" required>
+              </div>
+              <div class="form-group full">
+                <label>Position Applying For *</label>
+                <select id="career-position" required>
+                  <option value="">Select a position</option>
+                  <option value="Senior Dentist">Senior Dentist / Associate Dentist</option>
+                  <option value="Orthodontist">Orthodontist (Specialist)</option>
+                  <option value="Dental Hygienist">Dental Hygienist</option>
+                  <option value="Dental Laboratory Technician">Dental Laboratory Technician</option>
+                  <option value="Patient Coordinator">Patient Coordinator / Receptionist</option>
+                  <option value="Digital Marketing Manager">Digital Marketing Manager</option>
+                  <option value="Other">Other / Speculative</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Years of Experience *</label>
+                <select required>
+                  <option value="">Select</option>
+                  <option>Less than 1 year</option>
+                  <option>1–2 years</option>
+                  <option>3–5 years</option>
+                  <option>6–10 years</option>
+                  <option>10+ years</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Earliest Start Date</label>
+                <input type="date">
+              </div>
+              <div class="form-group full">
+                <label>LinkedIn Profile URL</label>
+                <input type="url" placeholder="https://linkedin.com/in/yourname">
+              </div>
+              <div class="form-group full">
+                <label>Cover Letter / Why Luxesmile? *</label>
+                <textarea rows="4" placeholder="Tell us why you'd be a great fit for the Luxesmile team and what excites you about this role..." required></textarea>
+              </div>
+              <div class="form-group full">
+                <label>CV / Resume Link or Summary *</label>
+                <textarea rows="3" placeholder="Paste a Google Drive link to your CV, or summarize your qualifications and experience here..." required></textarea>
+              </div>
+              <div class="form-group full">
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
+                  <i class="fas fa-paper-plane"></i> Submit Application
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:12px;">
+          <div class="nav-logo-icon">🦷</div>
+          <div><div class="nav-logo-text">Luxe<span>smile</span></div><span class="nav-logo-sub">Dental Clinic · Nairobi</span></div>
+        </div>
+        <p class="footer-brand-text">Nairobi's premier dental clinic delivering exceptional oral care since 2012.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <nav class="footer-links">
+          <a href="services.html#dental-implants">Dental Implants</a>
+          <a href="services.html#teeth-whitening">Teeth Whitening</a>
+          <a href="services.html#orthodontics">Orthodontics</a>
+          <a href="services.html#cosmetic">Cosmetic Dentistry</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="blog.html">Blog</a>
+          <a href="shop.html">Shop</a>
+          <a href="careers.html">Careers</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h5>Contact HR</h5>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:careers@luxesmile.co.ke" style="color:rgba(255,255,255,0.55);">careers@luxesmile.co.ke</a></span></div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+254700123456" style="color:rgba(255,255,255,0.55);">+254 700 123 456</a></span></div>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Ruiru Town &amp; Ruai, Nairobi, Kenya</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 <a href="index.html">Luxesmile Dental Clinic</a>. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function applyForJob(jobTitle) {
+    const sel = document.getElementById('career-position');
+    if (sel) {
+      // Match option
+      for (let opt of sel.options) {
+        if (opt.value === jobTitle || opt.text.includes(jobTitle)) {
+          sel.value = opt.value;
+          break;
+        }
+      }
+      document.getElementById('career-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+</script>
+</body>
+</html>

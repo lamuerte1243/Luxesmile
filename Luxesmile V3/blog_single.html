@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Blog Article — Luxesmile Dental Clinic</title>
+  <meta name="description" id="page-desc" content="Expert dental health articles from Luxesmile Dental Clinic Nairobi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .article-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 64px;
+      align-items: start;
+    }
+    .article-hero-img {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: var(--light-gray);
+      margin-bottom: 40px;
+    }
+    .article-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .article-body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-mid);
+    }
+    .article-body h2 {
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      margin: 36px 0 16px;
+    }
+    .article-body h3 { font-size: 1.2rem; margin: 28px 0 12px; }
+    .article-body p { margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 16px 0 20px 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body ul li { list-style: disc; }
+    .article-body ol li { list-style: decimal; }
+    .article-body strong { color: var(--text-dark); }
+    .article-body blockquote {
+      border-left: 4px solid var(--primary);
+      padding: 16px 24px;
+      background: var(--primary-bg);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 28px 0;
+      font-style: italic;
+      color: var(--text-dark);
+      font-size: 1.05rem;
+    }
+    .article-body .callout {
+      background: var(--light-gray);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin: 24px 0;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .article-body .callout i { color: var(--primary); margin-top: 2px; flex-shrink: 0; }
+
+    /* Author card */
+    .author-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 28px;
+      background: var(--light-gray);
+      border-radius: var(--radius-lg);
+      margin: 40px 0;
+    }
+    .author-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--primary);
+      flex-shrink: 0;
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .author-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .author-info span { font-size: 0.82rem; color: var(--primary); font-weight: 600; }
+    .author-info p { font-size: 0.86rem; margin: 6px 0 0; }
+
+    /* Share buttons */
+    .share-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 0;
+      border-top: 1px solid var(--mid-gray);
+      border-bottom: 1px solid var(--mid-gray);
+      margin: 32px 0;
+      flex-wrap: wrap;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+    .share-facebook { background: #1877F2; color: white; }
+    .share-twitter { background: #000; color: white; }
+    .share-whatsapp { background: #25D366; color: white; }
+    .share-copy { background: var(--light-gray); color: var(--text-dark); }
+    .share-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* Sidebar */
+    .sidebar-widget {
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+    .sidebar-widget h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+      color: var(--navy);
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary);
+    }
+    .sidebar-article {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--mid-gray);
+    }
+    .sidebar-article:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-article-img {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-md);
+      background: var(--light-gray);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .sidebar-article-img img { width: 100%; height: 100%; object-fit: cover; }
+    .sidebar-article-info h5 {
+      font-size: 0.86rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .sidebar-article-info span {
+      font-size: 0.76rem;
+      color: var(--text-light);
+    }
+    .sidebar-cta {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 1024px) {
+      .article-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <div class="top-info"><i class="fas fa-map-marker-alt"></i><span>Ruiru &amp; Ruai, Nairobi, Kenya</span></div>
+      </div>
+      <div class="top-bar-right">
+        <div class="top-info"><i class="fas fa-phone"></i><a href="tel:+254700123456">+254 700 123 456</a></div>
+        <div class="top-social">
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="main-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🦷</div>
+        <div><div class="nav-logo-text">Luxe<span>smile</span></div><span class="nav-logo-sub">Dental Clinic · Nairobi</span></div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+        <li class="nav-item"><a href="careers.html" class="nav-link">Careers</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+        <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero" style="padding:60px 0;">
+  <div class="container">
+    <nav class="breadcrumb" style="margin-bottom:16px;">
+      <a href="index.html">Home</a><i class="fas fa-chevron-right"></i>
+      <a href="blog.html">Blog</a><i class="fas fa-chevron-right"></i>
+      <span class="current" id="breadcrumb-title">Article</span>
+    </nav>
+    <span class="blog-tag" id="article-tag" style="font-size:0.8rem;padding:6px 16px;">Loading...</span>
+  </div>
+</section>
+
+<!-- Article Content -->
+<section class="section" style="background:var(--off-white);">
+  <div class="container">
+    <div class="article-layout">
+      <!-- Main Article -->
+      <main>
+        <div class="article-hero-img reveal">
+          <img id="article-hero-img" src="" alt="Article hero image" loading="eager">
+        </div>
+
+        <div class="article-meta reveal">
+          <span class="blog-date"><i class="far fa-calendar"></i> <span id="article-date"></span></span>
+          <span class="blog-date"><i class="far fa-clock"></i> <span id="article-read-time"></span></span>
+          <span class="blog-date"><i class="fas fa-user"></i> <span id="article-author-name"></span></span>
+        </div>
+
+        <h1 id="article-title" style="font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:20px;" class="reveal"></h1>
+
+        <div id="article-body" class="article-body reveal"></div>
+
+        <!-- Author Card -->
+        <div class="author-card reveal">
+          <div class="author-avatar">
+            <img id="author-avatar" src="" alt="Author avatar">
+          </div>
+          <div class="author-info">
+            <h4 id="author-name-card"></h4>
+            <span id="author-title-card"></span>
+            <p id="author-bio-card"></p>
+          </div>
+        </div>
+
+        <!-- Share Bar -->
+        <div class="share-bar reveal">
+          <strong style="font-size:0.88rem;color:var(--navy);">Share this article:</strong>
+          <button class="share-btn share-facebook" onclick="window.open('https://facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href))"><i class="fab fa-facebook-f"></i> Facebook</button>
+          <button class="share-btn share-twitter" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href))"><i class="fab fa-x-twitter"></i> Twitter</button>
+          <button class="share-btn share-whatsapp" onclick="window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(document.title+' '+window.location.href))"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+          <button class="share-btn share-copy" onclick="navigator.clipboard.writeText(window.location.href);showToast('Link copied!','success','fa-link')"><i class="fas fa-link"></i> Copy Link</button>
+        </div>
+
+        <!-- Related Articles -->
+        <h3 style="margin-bottom:24px;">More Articles You May Like</h3>
+        <div class="blog-grid" id="related-articles"></div>
+      </main>
+
+      <!-- Sidebar -->
+      <aside>
+        <!-- CTA widget -->
+        <div class="sidebar-cta">
+          <div style="font-size:2rem;margin-bottom:12px;">🦷</div>
+          <h4 style="color:var(--white);margin-bottom:8px;">Ready to Transform Your Smile?</h4>
+          <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-bottom:20px;">Book a free consultation with our specialists in Nairobi.</p>
+          <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fas fa-calendar-check"></i> Book Free Consult</a>
+        </div>
+
+        <!-- Popular articles -->
+        <div class="sidebar-widget">
+          <h4>Popular Articles</h4>
+          <a href="blog_single.html?id=1" class="sidebar-article" style="text-decoration:none;color:inherit;display:flex;">
+            <div class="sidebar-article-img"><img src="https://images.unsplash.com/photo-1609840113964-a5ce8861c76c?w=200&q=60&fit=crop" alt="" loading="lazy"></div>
+            <div class="sidebar-article-info"><h5>Complete Guide to Dental Implants in Kenya</h5><span>May 10, 2025</span></div>
+          </a>
+          <a href="blog_single.html?id=2" class="sidebar-article" style="text-decoration:none;color:inherit;display:flex;">
+            <div class="sidebar-article-img"><img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=200&q=60&fit=crop" alt="" loading="lazy"></div>
+            <div class="sidebar-article-info"><h5>Professional vs. At-Home Teeth Whitening</h5><span>Apr 28, 2025</span></div>
+          </a>
+          <a href="blog_single.html?id=5" class="sidebar-article" style="text-decoration:none;color:inherit;display:flex;">
+            <div class="sidebar-article-img"><img src="https://images.unsplash.com/photo-1522849696084-818b29dfe210?w=200&q=60&fit=crop" alt="" loading="lazy"></div>
+            <div class="sidebar-article-info"><h5>Everything About Porcelain Veneers in Kenya</h5><span>Mar 15, 2025</span></div>
+          </a>
+        </div>
+
+        <!-- Contact widget -->
+        <div class="sidebar-widget">
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item"><i class="fas fa-phone" style="color:var(--primary);"></i><span><a href="tel:+254700123456" style="color:var(--text-mid);">+254 700 123 456</a></span></div>
+          <div class="footer-contact-item"><i class="fas fa-map-marker-alt" style="color:var(--primary);"></i><span>Ruiru Town &amp; Ruai, Nairobi, Kenya</span></div>
+          <div class="footer-contact-item"><i class="fas fa-clock" style="color:var(--primary);"></i><span>Mon–Fri: 8am–7pm | Sat: 8am–4pm</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:12px;">
+          <div class="nav-logo-icon">🦷</div>
+          <div><div class="nav-logo-text">Luxe<span>smile</span></div><span class="nav-logo-sub">Dental Clinic · Nairobi</span></div>
+        </div>
+        <p class="footer-brand-text">Nairobi's premier dental clinic delivering exceptional oral care since 2012.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <nav class="footer-links">
+          <a href="services.html#dental-implants">Dental Implants</a>
+          <a href="services.html#teeth-whitening">Teeth Whitening</a>
+          <a href="services.html#orthodontics">Orthodontics</a>
+          <a href="services.html#cosmetic">Cosmetic Dentistry</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="blog.html">Blog</a>
+          <a href="shop.html">Shop</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+254700123456" style="color:rgba(255,255,255,0.55);">+254 700 123 456</a></span></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:info@luxesmile.co.ke" style="color:rgba(255,255,255,0.55);">info@luxesmile.co.ke</a></span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 <a href="index.html">Luxesmile Dental Clinic</a>. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+/* ── Article Data Store ── */
+const ARTICLES = {
+  1: {
+    id: 1,
+    title: "The Complete Guide to Dental Implants in Kenya: Costs, Process & What to Expect",
+    category: "Implants",
+    date: "May 10, 2025",
+    readTime: "8 min read",
+    img: "Implants 2.jpg",
+    author: { name: "Dr. Amara Osei", title: "Lead Dentist & Implantologist", avatar: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=150&q=80&fit=crop&crop=face", bio: "Dr. Osei holds a Masters in Implantology from the University of London and has placed over 2,000 implants in his 14-year career. He leads Luxesmile's implant department and is passionate about giving patients permanent tooth replacement solutions." },
+    body: `
+      <p>Dental implants have revolutionized the way we replace missing teeth, and for Kenyans seeking permanent, natural-looking solutions, they represent the gold standard of modern dentistry. Whether you've lost a tooth due to decay, injury, or gum disease, implants can restore your smile — and your confidence — with remarkable effectiveness.</p>
+      <p>In this comprehensive guide, our lead implantologist Dr. Amara Osei breaks down everything you need to know about getting dental implants in Kenya.</p>
+      
+      <h2>What Exactly Is a Dental Implant?</h2>
+      <p>A dental implant is a small titanium post that is surgically inserted into the jawbone where a missing tooth used to be. Over a period of 3–6 months, the titanium fuses with the bone in a process called <strong>osseointegration</strong> — essentially becoming part of your jaw. This creates an incredibly stable foundation for the final tooth restoration (a crown) to be placed on top.</p>
+      <p>The result is a tooth replacement that:</p>
+      <ul>
+        <li>Looks exactly like a natural tooth</li>
+        <li>Functions just like a natural tooth (you can eat anything)</li>
+        <li>Stimulates the jawbone and prevents bone loss</li>
+        <li>Doesn't require alteration of adjacent healthy teeth</li>
+        <li>Can last a lifetime with proper care</li>
+      </ul>
+
+      <h2>Am I a Candidate for Dental Implants?</h2>
+      <p>Most healthy adults are good candidates for implants. The key requirements are:</p>
+      <ol>
+        <li><strong>Sufficient jawbone density</strong> — enough bone to anchor the implant (bone grafting can help if needed)</li>
+        <li><strong>Healthy gums</strong> — active gum disease must be treated before implant placement</li>
+        <li><strong>Good general health</strong> — conditions like uncontrolled diabetes can affect healing</li>
+        <li><strong>Non-smoker or willing to quit</strong> — smoking significantly reduces implant success rates</li>
+      </ol>
+      <div class="callout">
+        <i class="fas fa-info-circle"></i>
+        <div><strong>Free Implant Assessment:</strong> Luxesmile offers a complimentary consultation for implant candidates, including digital X-rays to assess bone density. Book online or call +254 700 123 456.</div>
+      </div>
+
+      <h2>The Implant Process: Step by Step</h2>
+      <p>Understanding the full process helps set realistic expectations. Here's exactly what happens:</p>
+      <h3>Stage 1: Consultation & Planning (Week 1)</h3>
+      <p>Your dentist examines your mouth, takes digital X-rays and a 3D CBCT scan, reviews your medical history, and creates a customized treatment plan including timeline and costs.</p>
+      <h3>Stage 2: Implant Placement Surgery (Day 1)</h3>
+      <p>Under local anaesthesia (you won't feel a thing), a small titanium post is placed into the jawbone. The procedure takes 1–2 hours. You'll receive a temporary tooth so you never walk around with a gap.</p>
+      <h3>Stage 3: Osseointegration (3–6 Months)</h3>
+      <p>This is the waiting period as the implant fuses with your bone. You'll have periodic check-ups, but no major procedures during this time.</p>
+      <h3>Stage 4: Crown Placement (Final Visit)</h3>
+      <p>Once integration is complete, a custom porcelain crown — perfectly matched to your surrounding teeth — is attached to the implant. Your treatment is complete!</p>
+
+      <h2>How Much Do Dental Implants Cost in Kenya?</h2>
+      <p>At Luxesmile, single implant prices start from <strong>KES 45,000 per implant</strong>, which includes the implant post, abutment, and porcelain crown. This is comparable or more affordable than implant costs in the UK (£2,500+) or South Africa (ZAR 25,000+), making Kenya a destination for dental tourism.</p>
+      <blockquote>"Getting implants at Luxesmile was the best decision I made. The team was professional, the results are absolutely incredible, and the cost was a fraction of what I was quoted in the UK." — George Kamau, Nairobi</blockquote>
+      <p>Luxesmile offers <strong>flexible instalment plans via M-Pesa</strong> to spread the cost of treatment over 3–12 months, making implants accessible to more Kenyans.</p>
+
+      <h2>Aftercare & Longevity</h2>
+      <p>With proper care, dental implants can last 25+ years or even a lifetime. Aftercare is simple:</p>
+      <ul>
+        <li>Brush twice daily with a soft-bristle toothbrush</li>
+        <li>Floss around the implant daily</li>
+        <li>Attend regular 6-monthly check-ups at Luxesmile</li>
+        <li>Avoid smoking (the #1 cause of implant failure)</li>
+        <li>Wear a night guard if you grind your teeth</li>
+      </ul>
+
+      <h2>Ready to Get Started?</h2>
+      <p>If you're considering dental implants in Nairobi, Luxesmile's team is here to guide you through every step. Book your free implant consultation today and take the first step toward a complete, permanent smile.</p>
+    `
+  },
+  2: {
+    id: 2,
+    title: "Professional vs. At-Home Teeth Whitening: Which Is Right for You?",
+    category: "Whitening",
+    date: "Apr 28, 2025",
+    readTime: "6 min read",
+    img: "Whitening.jpg",
+    author: { name: "Dr. Kofi Mensah", title: "Cosmetic Dentist & Veneer Specialist", avatar: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&q=80&fit=crop&crop=face", bio: "Dr. Mensah is Luxesmile's lead cosmetic dentist with over 10 years specializing in smile makeovers. He is a certified Philips Zoom whitening provider and a Digital Smile Design (DSD) practitioner." },
+    body: `
+      <p>Walk into any pharmacy or supermarket in Nairobi today and you'll find an overwhelming array of teeth whitening products — strips, gels, charcoal powders, LED lights, and more. But how do these compare to professional whitening at a dental clinic? Let's break it down.</p>
+      
+      <h2>Understanding Tooth Discolouration</h2>
+      <p>Before choosing a whitening method, it helps to understand why teeth discolour. There are two types of staining:</p>
+      <ul>
+        <li><strong>Extrinsic staining</strong> — Surface stains from coffee, tea, red wine, and tobacco. Most whitening products work on these.</li>
+        <li><strong>Intrinsic staining</strong> — Staining within the tooth itself, caused by fluorosis, tetracycline antibiotics, or trauma. Only professional methods are effective here.</li>
+      </ul>
+
+      <h2>At-Home Whitening Options</h2>
+      <h3>Over-the-Counter Strips and Gels</h3>
+      <p>Products like Crest Whitestrips use 10–14% hydrogen peroxide. They can lighten teeth 1–3 shades over 2–4 weeks. They're affordable (KES 1,500–4,000) but results are inconsistent and can cause significant sensitivity.</p>
+      <h3>Charcoal Toothpastes</h3>
+      <p>Despite the hype, dentists universally caution against activated charcoal toothpastes. While they may remove surface staining temporarily, they are too abrasive for daily use and can damage enamel over time.</p>
+      <h3>Take-Home Kits from Your Dentist</h3>
+      <p>This is the best at-home option — custom-fitted trays made from impressions of your teeth, combined with professional-strength whitening gel (16–22% carbamide peroxide). Used for 2 weeks, these can achieve results comparable to in-office whitening. Available at Luxesmile from <strong>KES 4,500</strong>.</p>
+
+      <h2>Professional In-Office Whitening</h2>
+      <p>At Luxesmile, we use <strong>Philips Zoom WhiteSpeed</strong> — the world's leading in-office whitening system. Here's what happens:</p>
+      <ol>
+        <li>Your teeth are professionally cleaned first</li>
+        <li>Gums and soft tissues are protected with a gel barrier</li>
+        <li>Professional 25% hydrogen peroxide gel is applied</li>
+        <li>A special LED light activates the gel for 15-minute intervals (3–4 cycles)</li>
+        <li>Total treatment time: 60–90 minutes</li>
+      </ol>
+      <p>Results: <strong>up to 8 shades lighter in a single session</strong>. Starting from <strong>KES 8,000</strong>.</p>
+      <blockquote>"I walked in with heavily stained teeth from years of coffee drinking and walked out with a smile I'm genuinely proud to show off. The results were absolutely instant!" — Faith Njoroge, Nairobi</blockquote>
+
+      <h2>Which Is Right for You?</h2>
+      <p>Here's our honest recommendation:</p>
+      <ul>
+        <li><strong>Choose professional in-office whitening</strong> if you want the fastest, most dramatic results for a special event (wedding, interview, etc.)</li>
+        <li><strong>Choose dentist-provided take-home kits</strong> for gradual whitening at home with professional-quality results</li>
+        <li><strong>Avoid OTC charcoal products</strong> — the risk to your enamel isn't worth any modest short-term benefit</li>
+      </ul>
+      <div class="callout">
+        <i class="fas fa-lightbulb"></i>
+        <div><strong>Pro tip:</strong> For the best and longest-lasting results, combine in-office whitening with a take-home maintenance kit. We offer this as a package at Luxesmile — ask about our Smile Brightening Bundle.</div>
+      </div>
+
+      <h2>What About Whitening Toothpastes?</h2>
+      <p>Whitening toothpastes can help maintain results after professional treatment but won't make significant changes on their own. Look for products with the Kenya Dental Association (KDA) seal of approval and avoid highly abrasive formulas.</p>
+    `
+  },
+  3: {
+    id: 3,
+    title: "5 Ways to Make Your Child's First Dental Visit Stress-Free and Even Fun",
+    category: "Kids",
+    date: "Apr 14, 2025",
+    readTime: "5 min read",
+    img: "Pedeatric.jpg",
+    author: { name: "Dr. Nia Wanjiku", title: "Pediatric Dentist & Oral Surgeon", avatar: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=150&q=80&fit=crop&crop=face", bio: "Dr. Wanjiku completed her specialist training in pediatric dentistry at Kenyatta National Hospital and the University of Leeds. She has a special interest in behavior management and creating positive dental experiences for children." },
+    body: `
+      <p>The first visit to the dentist can be one of the most formative experiences in a child's life. A positive experience builds lifelong healthy dental habits; a negative one can create anxiety that persists into adulthood. As Luxesmile's pediatric specialist, I've worked with hundreds of children across Nairobi — and here are five proven strategies that really work.</p>
+      
+      <h2>1. Start Early — Before Teeth Even Appear</h2>
+      <p>The Kenya Dental Association recommends a child's first dental visit within 6 months of their first tooth appearing, or by their first birthday — whichever comes first. This "happy visit" isn't about procedures; it's simply about getting your child familiar and comfortable with the dental environment.</p>
+      <p>Early visits allow us to:</p>
+      <ul>
+        <li>Check that teeth are developing normally</li>
+        <li>Advise parents on proper infant oral care</li>
+        <li>Identify any early concerns before they become problems</li>
+        <li>Help children build positive associations with the dentist from day one</li>
+      </ul>
+
+      <h2>2. Use Positive Language — Avoid These Words</h2>
+      <p>The words you use before the appointment matter enormously. Well-meaning parents often say things like "it won't hurt" or "don't be scared" — which actually plants the idea that there is something to be scared of!</p>
+      <p>Try these instead:</p>
+      <ul>
+        <li><strong>Instead of "It won't hurt":</strong> "The dentist has special tools that help keep your teeth healthy and clean."</li>
+        <li><strong>Instead of "Be brave":</strong> "The dentist is so nice and loves helping kids."</li>
+        <li><strong>Instead of "Needle/drill/pull":</strong> Let the dental team introduce their own child-friendly vocabulary (we use words like "Mr. Whistle" for the drill and "sleepy juice" for anaesthetic).</li>
+      </ul>
+
+      <h2>3. Play "Dentist at Home" Before the Visit</h2>
+      <p>Role-playing is one of the most effective ways to reduce dental anxiety in children. A day or two before the appointment, let your child "be the dentist" and examine your teeth (and their teddy bear's teeth!) with a mirror and toothbrush. This makes the equipment and procedure familiar and removes the element of surprise.</p>
+
+      <h2>4. Choose a Child-Focused Environment</h2>
+      <p>Not all dental clinics are equal when it comes to treating children. Look for a practice that has:</p>
+      <ul>
+        <li>A dedicated pediatric waiting area with toys, books, or games</li>
+        <li>Dentists with specialist pediatric training</li>
+        <li>Child-friendly language and a calm, patient manner</li>
+        <li>Small-scaled, colourful instruments designed for children</li>
+        <li>Nitrous oxide ("laughing gas") available for anxious children</li>
+      </ul>
+      <blockquote>"My 5-year-old actually asked to go back to the dentist the next week! I couldn't believe it. The team at Luxesmile made it such a fun experience." — Jennifer Muthoni, Nairobi</blockquote>
+
+      <h2>5. Celebrate & Reward After the Visit</h2>
+      <p>Create a positive association by celebrating after the appointment — not with sugary treats (obviously!), but with stickers, a small toy, extra screen time, or a trip to the park. Let your child show off their "super clean teeth" to family members. The goal is to end every dental visit on a genuinely positive note so they look forward to coming back.</p>
+
+      <h2>When Should My Child First Visit the Dentist?</h2>
+      <p>At Luxesmile, children's <strong>first consultations are completely free</strong>. We recommend bringing your little one by age 1, and then every 6 months thereafter. Call us on +254 700 123 456 or book online to schedule your child's first happy visit today.</p>
+    `
+  }
+};
+
+/* ── Load Article ── */
+function loadArticle() {
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id') || '1', 10);
+  const article = ARTICLES[id] || ARTICLES[1];
+
+  // Update meta
+  document.getElementById('page-title').textContent = article.title + ' — Luxesmile';
+  document.getElementById('page-desc').content = article.title;
+  document.getElementById('breadcrumb-title').textContent = article.title.substring(0, 40) + '...';
+  document.getElementById('article-tag').textContent = article.category;
+  document.getElementById('article-tag').className = 'blog-tag';
+
+  // Hero image
+  const heroImg = document.getElementById('article-hero-img');
+  heroImg.src = article.img;
+  heroImg.alt = article.title;
+
+  // Meta
+  document.getElementById('article-date').textContent = article.date;
+  document.getElementById('article-read-time').textContent = article.readTime;
+  document.getElementById('article-author-name').textContent = article.author.name;
+
+  // Title + body
+  document.getElementById('article-title').textContent = article.title;
+  document.getElementById('article-body').innerHTML = article.body;
+
+  // Author card
+  document.getElementById('author-avatar').src = article.author.avatar;
+  document.getElementById('author-avatar').alt = article.author.name;
+  document.getElementById('author-name-card').textContent = article.author.name;
+  document.getElementById('author-title-card').textContent = article.author.title;
+  document.getElementById('author-bio-card').textContent = article.author.bio;
+
+  // Related articles
+  const relatedIds = Object.keys(ARTICLES).filter(k => parseInt(k) !== id).slice(0, 2);
+  const relatedGrid = document.getElementById('related-articles');
+  relatedGrid.innerHTML = relatedIds.map(rid => {
+    const a = ARTICLES[rid];
+    return `
+      <article class="blog-card">
+        <div class="blog-card-img"><img src="${a.img}" alt="${a.title}" loading="lazy"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="blog-tag">${a.category}</span><span class="blog-date"><i class="far fa-calendar"></i> ${a.date}</span></div>
+          <h3>${a.title}</h3>
+          <a href="blog_single.html?id=${a.id}" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+loadArticle();
+</script>
+</body>
+</html>

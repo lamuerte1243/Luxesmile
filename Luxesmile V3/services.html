@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dental Services — Luxesmile Dental Clinic Nairobi</title>
+  <meta name="description" content="Explore Luxesmile's full range of dental services in Nairobi: implants, teeth whitening, orthodontics, veneers, general dentistry, and pediatric care.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Service Page specific ── */
+    .service-section-block {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--mid-gray);
+    }
+    .service-section-block:last-child { border-bottom: none; }
+    .service-block-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .service-block-img {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--light-gray);
+    }
+    .service-block-img img { width: 100%; height: 100%; object-fit: cover; }
+    .service-block-content { }
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .service-list-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+    }
+    .service-list-item i { color: var(--primary); font-size: 0.85rem; flex-shrink: 0; }
+    .service-price-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-bg);
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: var(--radius-pill);
+      padding: 8px 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    /* Sticky service nav */
+    .service-nav-sticky {
+      position: sticky;
+      top: 72px;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--mid-gray);
+      box-shadow: var(--shadow-sm);
+    }
+    .service-nav-inner {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .service-nav-inner::-webkit-scrollbar { display: none; }
+    .service-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 22px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all var(--transition-base);
+      cursor: pointer;
+    }
+    .service-nav-link:hover, .service-nav-link.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .service-nav-link i { font-size: 0.9rem; }
+
+    @media (max-width:768px) {
+      .service-block-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <div class="top-info"><i class="fas fa-map-marker-alt"></i><span>Ruiru &amp; Ruai, Nairobi, Kenya</span></div>
+        <div class="top-info"><i class="fas fa-clock"></i><span>Mon–Sat: 8:00 AM – 7:00 PM</span></div>
+      </div>
+      <div class="top-bar-right">
+        <div class="top-info"><i class="fas fa-phone"></i><a href="tel:+254700123456">+254 700 123 456</a></div>
+        <div class="top-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="main-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🦷</div>
+        <div>
+          <div class="nav-logo-text">Luxe<span>smile</span></div>
+          <span class="nav-logo-sub">Dental Clinic · Nairobi</span>
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+        <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+        <li class="nav-item"><a href="careers.html" class="nav-link">Careers</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+        <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" style="margin-bottom:20px;">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span class="current">Services</span>
+    </nav>
+    <div class="section-label" style="color:var(--primary);">What We Offer</div>
+    <h1 class="page-hero-title">Our Dental <span>Services</span></h1>
+    <p style="color:rgba(255,255,255,0.65);max-width:560px;margin-top:12px;font-size:1.05rem;">From routine check-ups to complete smile transformations — Luxesmile offers the full spectrum of modern dental care under one roof in Nairobi.</p>
+  </div>
+</section>
+
+<!-- Sticky Service Navigation -->
+<div class="service-nav-sticky">
+  <div class="container">
+    <div class="service-nav-inner">
+      <a href="#dental-implants" class="service-nav-link"><i class="fas fa-tooth"></i> Implants</a>
+      <a href="#teeth-whitening" class="service-nav-link"><i class="fas fa-star"></i> Whitening</a>
+      <a href="#orthodontics" class="service-nav-link"><i class="fas fa-smile"></i> Orthodontics</a>
+      <a href="#cosmetic" class="service-nav-link"><i class="fas fa-magic"></i> Cosmetic</a>
+      <a href="#general" class="service-nav-link"><i class="fas fa-heartbeat"></i> General</a>
+      <a href="#pediatric" class="service-nav-link"><i class="fas fa-baby"></i> Pediatric</a>
+      <a href="#emergency" class="service-nav-link"><i class="fas fa-ambulance"></i> Emergency</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICES CONTENT ══ -->
+<div style="background:var(--white);">
+  <div class="container">
+
+    <!-- 1. Dental Implants -->
+    <div class="service-section-block" id="dental-implants">
+      <div class="service-block-grid">
+        <div class="service-block-img reveal-left">
+          <img src="Implants.jpg" alt="Dental implant procedure at Luxesmile Nairobi" loading="lazy">
+        </div>
+        <div class="service-block-content reveal-right" data-delay="200">
+          <div class="service-price-note"><i class="fas fa-tag"></i> Starting from KES 45,000 per implant</div>
+          <div class="section-label">Dental Implants</div>
+          <h2>Permanent Tooth Replacement That Looks & Feels Natural</h2>
+          <p>Dental implants are the gold standard for replacing missing teeth. A titanium post is surgically placed into the jawbone, where it integrates over time to create a stable foundation for a natural-looking crown. The result? A tooth that's virtually indistinguishable from your natural teeth.</p>
+          <div class="service-list">
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Single, multiple, and full-arch implant solutions</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> 98%+ success rate with premium Swiss implant brands</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Guided implant placement using 3D CBCT imaging</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Lifetime prosthetic guarantee on qualifying cases</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Installment payment plans available via M-Pesa</div>
+          </div>
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book Implant Consultation</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Teeth Whitening -->
+    <div class="service-section-block" id="teeth-whitening">
+      <div class="service-block-grid">
+        <div class="service-block-content reveal-left">
+          <div class="service-price-note"><i class="fas fa-tag"></i> In-Chair from KES 8,000 · Take-Home from KES 4,500</div>
+          <div class="section-label">Teeth Whitening</div>
+          <h2>Brighten Your Smile by Up to 8 Shades</h2>
+          <p>Our professional whitening treatments use clinically proven formulas that lift stains from coffee, tea, wine, and aging — safely and effectively. Choose between our premium in-chair treatment for instant results, or a custom take-home kit for gradual brightening on your schedule.</p>
+          <div class="service-list">
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Philips Zoom in-office whitening (60–90 min session)</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Custom take-home trays with professional gel</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Safe for enamel — no permanent sensitivity</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Special sensitivity protocol for reactive teeth</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Results last 12–24 months with proper care</div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="contact.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book Whitening</a>
+            <a href="shop.html" class="btn btn-outline"><i class="fas fa-shopping-bag"></i> Whitening Kits</a>
+          </div>
+        </div>
+        <div class="service-block-img reveal-right" data-delay="200">
+          <img src="Whitening.jpg" alt="Professional teeth whitening results at Luxesmile" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Orthodontics -->
+    <div class="service-section-block" id="orthodontics">
+      <div class="service-block-grid">
+        <div class="service-block-img reveal-left">
+          <img src="Orthodontics.jpg" alt="Orthodontics braces and Invisalign at Luxesmile Nairobi" loading="lazy">
+        </div>
+        <div class="service-block-content reveal-right" data-delay="200">
+          <div class="service-price-note"><i class="fas fa-tag"></i> Metal Braces from KES 55,000 · Invisalign from KES 90,000</div>
+          <div class="section-label">Orthodontics</div>
+          <h2>Straight Teeth & Perfect Bite for All Ages</h2>
+          <p>Whether you're a teenager getting braces for the first time or an adult looking for a discreet alignment solution, Luxesmile offers the full range of modern orthodontic treatments — all overseen by our specialist orthodontist Dr. Fatima Kamau.</p>
+          <div class="service-list">
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Traditional metal braces — durable and affordable</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Ceramic (tooth-coloured) braces for subtlety</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Invisalign certified provider — completely clear aligners</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Lingual braces — attached to back of teeth</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Digital treatment simulation — see results before starting</div>
+          </div>
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book Orthodontic Assessment</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Cosmetic Dentistry -->
+    <div class="service-section-block" id="cosmetic">
+      <div class="service-block-grid">
+        <div class="service-block-content reveal-left">
+          <div class="service-price-note"><i class="fas fa-tag"></i> Veneers from KES 15,000 per tooth</div>
+          <div class="section-label">Cosmetic Dentistry</div>
+          <h2>Your Dream Smile, Expertly Crafted</h2>
+          <p>Cosmetic dentistry is about more than aesthetics — it's about confidence. Our cosmetic specialist Dr. Kofi Mensah uses the latest materials and techniques to design and deliver smile makeovers that look completely natural and last for years.</p>
+          <div class="service-list">
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Porcelain veneers — ultra-thin, custom-crafted shells</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Composite bonding — same-day gap and chip repair</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Smile makeovers — full mouth redesign</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Gum contouring — reshape gum line for symmetry</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Digital Smile Design (DSD) — preview results digitally first</div>
+          </div>
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-magic"></i> Design My Smile</a>
+        </div>
+        <div class="service-block-img reveal-right" data-delay="200">
+          <img src="Cosmetic.jpg" alt="Cosmetic dentistry veneers and smile makeover at Luxesmile" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. General Dentistry -->
+    <div class="service-section-block" id="general">
+      <div class="service-block-grid">
+        <div class="service-block-img reveal-left">
+          <img src="General.jpg" alt="General dentistry check-up and cleaning at Luxesmile" loading="lazy">
+        </div>
+        <div class="service-block-content reveal-right" data-delay="200">
+          <div class="service-price-note"><i class="fas fa-tag"></i> Check-up & Clean from KES 2,500</div>
+          <div class="section-label">General Dentistry</div>
+          <h2>Preventive Care That Keeps Your Teeth Healthy for Life</h2>
+          <p>Great dental health starts with excellent preventive care. Our comprehensive general dentistry services catch problems early, treat existing conditions effectively, and help you maintain a healthy, pain-free mouth for decades to come.</p>
+          <div class="service-list">
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Full oral health examinations & digital X-rays</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Professional cleaning & scaling (prophylaxis)</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Tooth-coloured composite fillings</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Root canal treatment (RCT) with rotary endodontics</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Crowns, bridges, and dentures</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Wisdom tooth extraction</div>
+          </div>
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book a Check-Up</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Pediatric Dentistry -->
+    <div class="service-section-block" id="pediatric">
+      <div class="service-block-grid">
+        <div class="service-block-content reveal-left">
+          <div class="service-price-note"><i class="fas fa-tag"></i> First Visit Consultation — Free</div>
+          <div class="section-label">Pediatric Dentistry</div>
+          <h2>Gentle, Child-Friendly Dental Care from Day One</h2>
+          <p>Our pediatric wing is designed to make children actually look forward to visiting the dentist. Dr. Nia Wanjiku and her team are specially trained in child psychology and behavior management, ensuring every visit is positive, fear-free, and even fun.</p>
+          <div class="service-list">
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Child-friendly environment with play area</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Preventive fissure sealants & fluoride treatments</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Baby and primary tooth care</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Early orthodontic assessment</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> School dental health programs</div>
+          </div>
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-baby"></i> Book Kids Appointment</a>
+        </div>
+        <div class="service-block-img reveal-right" data-delay="200">
+          <img src="Pedeatric.jpg" alt="Pediatric dentistry for children at Luxesmile Nairobi" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Emergency Dentistry -->
+    <div class="service-section-block" id="emergency">
+      <div class="service-block-grid">
+        <div class="service-block-img reveal-left">
+          <img src="Emergency.jpg" alt="Emergency dental care at Luxesmile Nairobi" loading="lazy">
+        </div>
+        <div class="service-block-content reveal-right" data-delay="200">
+          <div class="service-price-note"><i class="fas fa-ambulance"></i> 24/7 Emergency Line: +254 722 999 888</div>
+          <div class="section-label">Emergency Dentistry</div>
+          <h2>We're Here When You Need Us Most — Any Time, Any Day</h2>
+          <p>Dental emergencies don't follow a schedule. That's why Luxesmile operates a dedicated emergency dental service 24 hours a day, 7 days a week. Call our emergency line and speak directly to an on-call dentist within minutes.</p>
+          <div class="service-list">
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Severe toothache & acute pain relief</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Knocked-out or broken teeth</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Dental abscess & swelling</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Lost fillings, crowns, or bridges</div>
+            <div class="service-list-item"><i class="fas fa-check-circle"></i> Post-operative complications</div>
+          </div>
+          <a href="tel:+254722999888" class="btn btn-primary" style="background:var(--red-accent);border-color:var(--red-accent);">
+            <i class="fas fa-phone"></i> Call Emergency Line Now
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ PRICING SECTION ══ -->
+<section class="section" style="background:var(--off-white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Transparent Pricing</div>
+      <h2>Clear, Honest Pricing — No Hidden Fees</h2>
+      <p>We believe you should know exactly what you're paying for. All prices include consultation, the procedure, and standard follow-up care.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card reveal" data-delay="0">
+        <div class="pricing-icon"><i class="fas fa-heartbeat"></i></div>
+        <div class="pricing-name">Essential Care</div>
+        <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px;">Preventive & general</p>
+        <div class="pricing-price"><span class="pricing-currency">KES</span>2,500</div>
+        <p style="font-size:0.78rem;color:var(--text-light);">per check-up & clean</p>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Full oral examination</li>
+          <li><i class="fas fa-check"></i> Scaling & polishing</li>
+          <li><i class="fas fa-check"></i> Digital X-rays (2 films)</li>
+          <li><i class="fas fa-check"></i> Treatment plan</li>
+          <li><i class="fas fa-check"></i> Fluoride application</li>
+        </ul>
+        <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center;">Book Now</a>
+      </div>
+
+      <div class="pricing-card featured reveal" data-delay="150">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-icon"><i class="fas fa-star"></i></div>
+        <div class="pricing-name" style="color:var(--white);">Smile Brightening</div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:8px;">Professional whitening</p>
+        <div class="pricing-price"><span class="pricing-currency">KES</span>8,000</div>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);">in-chair session</p>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Philips Zoom whitening</li>
+          <li><i class="fas fa-check"></i> Up to 8 shades lighter</li>
+          <li><i class="fas fa-check"></i> Sensitivity assessment</li>
+          <li><i class="fas fa-check"></i> Take-home maintenance kit</li>
+          <li><i class="fas fa-check"></i> 6-month touch-up included</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Book Whitening</a>
+      </div>
+
+      <div class="pricing-card reveal" data-delay="300">
+        <div class="pricing-icon"><i class="fas fa-magic"></i></div>
+        <div class="pricing-name">Smile Makeover</div>
+        <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px;">Complete transformation</p>
+        <div class="pricing-price"><span class="pricing-currency">KES</span>15K<span style="font-size:1rem;">+</span></div>
+        <p style="font-size:0.78rem;color:var(--text-light);">per tooth (veneers)</p>
+        <ul class="pricing-features">
+          <li><i class="fas fa-check"></i> Digital Smile Design</li>
+          <li><i class="fas fa-check"></i> Porcelain veneers</li>
+          <li><i class="fas fa-check"></i> Gum contouring</li>
+          <li><i class="fas fa-check"></i> Teeth whitening included</li>
+          <li><i class="fas fa-check"></i> 5-year warranty</li>
+        </ul>
+        <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center;">Free Consultation</a>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:32px;font-size:0.85rem;color:var(--text-light);">
+      <i class="fas fa-info-circle" style="color:var(--primary);"></i>
+      Prices are indicative. Exact pricing depends on individual assessment. Insurance and M-Pesa instalment plans available. <a href="contact.html" style="color:var(--primary);font-weight:600;">Request a detailed quote →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;" class="about-grid">
+      <div class="reveal-left">
+        <div class="section-label">FAQs</div>
+        <h2>Frequently Asked Questions</h2>
+        <p>Have questions? We have answers. If you don't see your question here, call us or send a message — we're always happy to help.</p>
+        <div style="margin-top:32px;">
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-headset"></i> Ask a Question</a>
+        </div>
+      </div>
+      <div class="reveal-right" data-delay="200">
+        <div class="faq-item">
+          <div class="faq-question">Does teeth whitening work on crowns and veneers?<div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">No — whitening agents only work on natural tooth enamel. Crowns, veneers, and bonding will not change colour. If you have restorations, we'll advise whether whitening the natural teeth first (before new restorations) is a better approach.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">How long does a dental implant procedure take?<div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">The implant placement surgery takes about 1–2 hours per implant. However, the total process (from placement to final crown) typically takes 3–6 months to allow the implant to fully fuse with the jawbone (osseointegration). We provide a temporary tooth during this period.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is orthodontic treatment suitable for adults?<div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">Absolutely! There's no age limit for orthodontic treatment. In fact, we see a large number of adult patients. Options like Invisalign and ceramic braces are especially popular with adults because they're discreet and don't affect your professional appearance.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Does Luxesmile accept NHIF or private insurance?<div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes! We accept SHA (formerly NHIF), Jubilee Health Insurance, AAR, Resolution Health, Madison, and most other major insurance providers in Kenya. We also accept NHIF and most corporate schemes. Please bring your insurance card and we'll verify coverage before treatment.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What are your payment options?<div class="faq-chevron"><i class="fas fa-chevron-down"></i></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">We accept M-Pesa, credit/debit cards, mobile banking, cash, and all major insurance plans. For high-value treatments like implants or orthodontics, we offer affordable monthly instalment plans. Ask our patient coordinator for details.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Band -->
+<section style="background:var(--navy);padding:80px 0;">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <div class="section-label" style="color:var(--primary);justify-content:center;">Get Started Today</div>
+      <h2 style="color:var(--white);margin-bottom:16px;">Ready to Transform Your Smile?</h2>
+      <p style="color:rgba(255,255,255,0.6);max-width:500px;margin:0 auto 32px;">Book a free consultation and our specialists will create a personalised treatment plan tailored to your goals and budget.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-calendar-check"></i> Book Free Consultation</a>
+        <a href="tel:+254700123456" class="btn btn-white btn-lg"><i class="fas fa-phone"></i> +254 700 123 456</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:12px;">
+          <div class="nav-logo-icon">🦷</div>
+          <div><div class="nav-logo-text">Luxe<span>smile</span></div><span class="nav-logo-sub">Dental Clinic · Nairobi</span></div>
+        </div>
+        <p class="footer-brand-text">Nairobi's premier dental clinic, delivering exceptional oral care with world-class expertise since 2012.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <nav class="footer-links">
+          <a href="#dental-implants">Dental Implants</a>
+          <a href="#teeth-whitening">Teeth Whitening</a>
+          <a href="#orthodontics">Orthodontics</a>
+          <a href="#cosmetic">Cosmetic Dentistry</a>
+          <a href="#general">General Dentistry</a>
+          <a href="#pediatric">Pediatric Dentistry</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="blog.html">Blog</a>
+          <a href="shop.html">Dental Shop</a>
+          <a href="careers.html">Careers</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Ruiru Town &amp; Ruai, Nairobi, Kenya</span></div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+254700123456" style="color:rgba(255,255,255,0.55);">+254 700 123 456</a></span></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:info@luxesmile.co.ke" style="color:rgba(255,255,255,0.55);">info@luxesmile.co.ke</a></span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 <a href="index.html">Luxesmile Dental Clinic</a>. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

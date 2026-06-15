@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxesmile Dental Clinic — Nairobi's Premier Dental Experience</title>
+  <meta name="description" content="Luxesmile is Nairobi's most trusted dental clinic offering cosmetic dentistry, implants, orthodontics, and complete oral care with world-class expertise.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+   PRELOADER
+══════════════════════════════════════ -->
+<div id="preloader">
+  <div class="preloader-logo">
+    <svg class="loader-tooth" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 5C22 5 15 11 15 20C15 24 16 27 18 30C16 36 15 42 15 47C15 51 17 55 20 55C23 55 24 51 25 47C26 43 27 40 30 40C33 40 34 43 35 47C36 51 37 55 40 55C43 55 45 51 45 47C45 42 44 36 42 30C44 27 45 24 45 20C45 11 38 5 30 5Z" fill="#D4AF37"/>
+    </svg>
+    <h2>Luxe<span>smile</span></h2>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+   TOP BAR
+══════════════════════════════════════ -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <div class="top-info">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Ruiru &amp; Ruai, Nairobi, Kenya</span>
+        </div>
+        <div class="top-info">
+          <i class="fas fa-clock"></i>
+          <span>Mon–Sat: 8:00 AM – 7:00 PM</span>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <div class="top-info">
+          <i class="fas fa-phone"></i>
+          <a href="tel:+254768703009">+254 768 703009</a>
+        </div>
+        <div class="top-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════ -->
+<nav class="navbar" id="main-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🦷</div>
+        <div>
+          <div class="nav-logo-text">Luxe<span>smile</span></div>
+          <span class="nav-logo-sub">Dental Clinic · Nairobi</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="services.html" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+          <div class="nav-dropdown">
+            <a href="services.html#dental-implants">Dental Implants</a>
+            <a href="services.html#teeth-whitening">Teeth Whitening</a>
+            <a href="services.html#orthodontics">Orthodontics</a>
+            <a href="services.html#cosmetic">Cosmetic Dentistry</a>
+            <a href="services.html#general">General Dentistry</a>
+            <a href="services.html#pediatric">Pediatric Dentistry</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a href="shop.html" class="nav-link">Shop <i class="fas fa-chevron-down"></i></a>
+          <div class="nav-dropdown">
+            <a href="shop.html#toothpastes">Toothpastes</a>
+            <a href="shop.html#electric-brushes">Electric Brushes</a>
+            <a href="shop.html#whitening">Whitening Kits</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="careers.html" class="nav-link">Careers</a>
+        </li>
+        <li class="nav-item">
+          <a href="contact.html" class="nav-link">Contact</a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="nav-phone">
+          <i class="fas fa-phone"></i>
+          <a href="tel:+254768703009">+254 768 703009</a>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="document.getElementById('appointment').scrollIntoView({behavior:'smooth'})">
+          <i class="fas fa-calendar-check"></i> Book Appointment
+        </button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+   HERO SECTION
+══════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg-shape hero-bg-shape-1"></div>
+  <div class="hero-bg-shape hero-bg-shape-2"></div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content reveal-left">
+        <div class="hero-label">
+          <i class="fas fa-tooth"></i>
+          Nairobi's #1 Rated Dental Clinic
+        </div>
+        <h1 class="hero-title">
+          Restore Your Smile with <span class="highlight">Trusted Dental</span> Specialists
+        </h1>
+        <p class="hero-desc">
+          At Luxesmile, we combine cutting-edge technology with compassionate care to give you the confident smile you deserve. Serving Nairobi and all of Kenya since 2012.
+        </p>
+        <div class="hero-actions">
+          <a href="#appointment" class="btn btn-primary btn-lg">
+            <i class="fas fa-calendar-check"></i> Book Appointment
+          </a>
+          <div class="hero-play">
+            <div class="play-icon"><i class="fas fa-play"></i></div>
+            <span>Our Clinic Tour</span>
+          </div>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item">
+            <div class="trust-check"><i class="fas fa-check"></i></div>
+            <span>ISO Certified Clinic</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-check"><i class="fas fa-check"></i></div>
+            <span>Painless Procedures</span>
+          </div>
+          <div class="trust-item">
+            <div class="trust-check"><i class="fas fa-check"></i></div>
+            <span>Affordable Payment Plans</span>
+          </div>
+        </div>
+      </div>
+
+<div class="hero-visual reveal-right" data-delay="200" style="padding-right: 40px; overflow: visible;">
+        <div class="hero-image-wrap" style="position: relative; overflow: visible;">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80&fit=crop&crop=face" alt="Happy dental patient smiling at Luxesmile clinic" loading="eager">
+
+          <div class="hero-card hero-card-1">
+            <div class="hero-card-icon"><i class="fas fa-users"></i></div>
+            <div>
+              <div class="hero-card-num">12,500+</div>
+              <div class="hero-card-label">Happy Patients</div>
+            </div>
+          </div>
+
+          <div class="hero-card hero-card-2">
+            <div>
+              <div class="rating-stars">★★★★★</div>
+              <div class="rating-num">4.9/5</div>
+              <div class="hero-card-label">Google Rating</div>
+            </div>
+          </div>
+
+          <div class="hero-card hero-card-3">
+            <div class="hero-card-icon"><i class="fas fa-award"></i></div>
+            <div class="hero-card-num">12+</div>
+            <div class="hero-card-label">Years Serving Kenya</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   FEATURE STRIP
+══════════════════════════════════════ -->
+<section class="feature-strip">
+  <div class="container">
+    <div class="feature-strip-inner">
+      <div class="feature-item reveal" data-delay="0">
+        <div class="feature-icon"><i class="fas fa-tooth"></i></div>
+        <div class="feature-text">
+          <strong>Advanced Technology</strong>
+          <span>3D Imaging & Digital X-Ray</span>
+        </div>
+      </div>
+      <div class="feature-item reveal" data-delay="100">
+        <div class="feature-icon"><i class="fas fa-user-md"></i></div>
+        <div class="feature-text">
+          <strong>Expert Doctors</strong>
+          <span>Board-Certified Specialists</span>
+        </div>
+      </div>
+      <div class="feature-item reveal" data-delay="200">
+        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="feature-text">
+          <strong>Pain-Free Care</strong>
+          <span>Latest Comfort Techniques</span>
+        </div>
+      </div>
+      <div class="feature-item reveal" data-delay="300">
+        <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
+        <div class="feature-text">
+          <strong>M-Pesa Accepted</strong>
+          <span>Flexible Payment Options</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   SERVICES SECTION
+══════════════════════════════════════ -->
+<section class="section" id="services" style="background: var(--white);">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">What We Offer</div>
+      <h2>Comprehensive Dental <br>Services for Every Need</h2>
+      <p>From routine check-ups to complete smile transformations, our specialists offer the full spectrum of modern dental care.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Dental Implants -->
+      <div class="service-card reveal" data-delay="0">
+        <img src="Implants.jpg" alt="Dental Implants" style="width:100%; border-radius:8px; margin-bottom:15px;">
+        <div class="service-icon-wrap"><i class="fas fa-tooth"></i></div>
+        <h3>Dental Implants</h3>
+        <p>Permanent tooth replacement that looks, feels, and functions like your natural teeth. State-of-the-art titanium implants with a 98% success rate.</p>
+        <a href="services.html#dental-implants" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Teeth Whitening -->
+      <div class="service-card reveal" data-delay="100">
+        <img src="Whitening.jpg" alt="Teeth Whitening" style="width:100%; border-radius:8px; margin-bottom:15px;">
+        <div class="service-icon-wrap"><i class="fas fa-star"></i></div>
+        <h3>Teeth Whitening</h3>
+        <p>Professional in-chair or take-home whitening treatments that lift stains up to 8 shades in a single session. Safe for sensitive teeth.</p>
+        <a href="services.html#teeth-whitening" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Orthodontics -->
+      <div class="service-card reveal" data-delay="200">
+        <img src="Orthodontics.jpg" alt="Orthodontics" style="width:100%; border-radius:8px; margin-bottom:15px;">
+        <div class="service-icon-wrap"><i class="fas fa-smile"></i></div>
+        <h3>Orthodontics & Braces</h3>
+        <p>Metal braces, ceramic braces, and invisible Invisalign aligners to straighten teeth discreetly for teens and adults alike.</p>
+        <a href="services.html#orthodontics" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Cosmetic Dentistry -->
+      <div class="service-card reveal" data-delay="100">
+        <img src="Cosmetic.jpg" alt="Cosmetic Dentistry" style="width:100%; border-radius:8px; margin-bottom:15px;">
+        <div class="service-icon-wrap"><i class="fas fa-magic"></i></div>
+        <h3>Cosmetic Dentistry</h3>
+        <p>Porcelain veneers, dental bonding, and complete smile makeovers designed to create the perfect, photogenic smile you've always wanted.</p>
+        <a href="services.html#cosmetic" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- General Dentistry -->
+      <div class="service-card reveal" data-delay="200">
+        <img src="General.jpg" alt="General Dentistry" style="width:100%; border-radius:8px; margin-bottom:15px;">
+        <div class="service-icon-wrap"><i class="fas fa-heartbeat"></i></div>
+        <h3>General Dentistry</h3>
+        <p>Preventive check-ups, cleanings, fillings, root canals, and extractions — everything you need to maintain a healthy, pain-free mouth.</p>
+        <a href="services.html#general" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Pediatric Dentistry -->
+      <div class="service-card reveal" data-delay="300">
+        <img src="Pedeatric.jpg" alt="Pediatric Dentistry" style="width:100%; border-radius:8px; margin-bottom:15px;">
+        <div class="service-icon-wrap"><i class="fas fa-baby"></i></div>
+        <h3>Pediatric Dentistry</h3>
+        <p>Child-friendly dental care in a calm, colorful environment. We make first dental visits fun, building lifelong healthy habits from an early age.</p>
+        <a href="services.html#pediatric" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="text-center mt-lg">
+      <a href="services.html" class="btn btn-outline">
+        <i class="fas fa-th-large"></i> View All Services
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   STATS SECTION
+══════════════════════════════════════ -->
+<section class="stats-section section-sm">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal" data-delay="0">
+        <div class="stat-num">
+          <span class="counter-num" data-target="12500">0</span>
+          <span class="stat-suffix">+</span>
+        </div>
+        <div class="stat-label">Patients Treated</div>
+      </div>
+      <div class="stat-item reveal" data-delay="100">
+        <div class="stat-num">
+          <span class="counter-num" data-target="12">0</span>
+          <span class="stat-suffix">+</span>
+        </div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+      <div class="stat-item reveal" data-delay="200">
+        <div class="stat-num">
+          <span class="counter-num" data-target="8">0</span>
+          <span class="stat-suffix"></span>
+        </div>
+        <div class="stat-label">Specialist Dentists</div>
+      </div>
+      <div class="stat-item reveal" data-delay="300">
+        <div class="stat-num">
+          <span class="counter-num" data-target="98">0</span>
+          <span class="stat-suffix">%</span>
+        </div>
+        <div class="stat-label">Patient Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   ABOUT SECTION (Hident split with image badge)
+══════════════════════════════════════ -->
+<section class="section" id="about" style="background: var(--off-white);">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-wrap reveal-left">
+        <div class="about-image-main">
+          <!-- Locally hosted Nairobi skyline image -->
+          <img src="nairobi-skyline.jpg" alt="Beautiful Nairobi city skyline" loading="lazy">
+        </div>
+        <div class="about-image-badge">
+          <strong>12+</strong>
+          <span>Years of<br>Trusted Care</span>
+        </div>
+      </div>
+
+      <div class="about-content reveal-right" data-delay="200">
+        <div class="section-label">About Us</div>
+        <h2>Nairobi's Most Trusted Dental Excellence</h2>
+        <p>Founded in 2012, Luxesmile Dental Clinic has grown to become Nairobi's premier destination for complete oral health and smile transformation. Our team of board-certified specialists blends technical mastery with genuine compassion — because we believe exceptional dentistry is about more than just teeth.</p>
+
+        <div class="about-features">
+          <div class="about-feature-item">
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>ISO 9001 Certified</strong>
+              <span>Internationally accredited standards</span>
+            </div>
+          </div>
+          <div class="about-feature-item">
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Digital X-Ray & CBCT</strong>
+              <span>Zero-wait 3D imaging technology</span>
+            </div>
+          </div>
+          <div class="about-feature-item">
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Emergency Services</strong>
+              <span>24/7 dental emergency line</span>
+            </div>
+          </div>
+          <div class="about-feature-item">
+            <i class="fas fa-check-circle"></i>
+            <div>
+              <strong>Sterilization Protocol</strong>
+              <span>Hospital-grade infection control</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-md" style="flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn-primary">
+            <i class="fas fa-calendar-check"></i> Book Now
+          </a>
+          <a href="services.html" class="btn btn-outline">
+            <i class="fas fa-tooth"></i> Our Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   BEFORE & AFTER SLIDER (PERFECT FIT)
+══════════════════════════════════════ -->
+<section id="results" style="background:var(--navy);padding:80px 0 60px;overflow:hidden;">
+  <div class="container">
+
+    <div style="text-align:center;max-width:640px;margin:0 auto 40px;" class="reveal">
+      <p style="color:rgba(255,255,255,0.9);font-size:clamp(1.05rem,2.1vw,1.4rem);font-family:var(--font-head);font-weight:600;line-height:1.6;margin:0;">
+        Compare before and after results showing beautiful functional smiles
+        <em style="color:var(--primary);font-style:normal;"> created through expert professional whitening</em>
+      </p>
+    </div>
+
+    <div class="reveal" data-delay="100" style="max-width: 800px; margin: 0 auto 16px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px;">
+      <div style="background:rgba(15,23,42,0.65); border:1px solid var(--primary); border-radius:50px; padding:8px 20px; color:var(--primary); font-family:var(--font-head); font-weight:700; letter-spacing:1px; text-transform:uppercase; font-size:0.85rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+        <i class="fas fa-arrow-left" style="margin-right:6px; opacity:0.8;"></i> After
+      </div>
+      <div style="background:rgba(15,23,42,0.65); border:1px solid var(--primary); border-radius:50px; padding:8px 20px; color:var(--primary); font-family:var(--font-head); font-weight:700; letter-spacing:1px; text-transform:uppercase; font-size:0.85rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+        Before <i class="fas fa-arrow-right" style="margin-left:6px; opacity:0.8;"></i>
+      </div>
+    </div>
+
+    <div class="reveal" data-delay="100" style="max-width: 800px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.4); aspect-ratio: 16 / 9;">
+      <iframe 
+        frameborder="0" 
+        class="juxtapose" 
+        width="100%" 
+        height="100%" 
+        scrolling="no" 
+        style="display: block; width: 100%; height: 100%; border: none;" 
+        src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=9cdd364e-5e28-11f1-ba1b-0e6f42328d7d">
+      </iframe>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;" class="reveal" data-delay="300">
+      <a href="contact.html" class="btn btn-primary btn-lg">
+        <i class="fas fa-calendar-check"></i> Book a Whitening Consultation
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   HOW IT WORKS — PROCESS STEPS
+══════════════════════════════════════ -->
+<section class="process-section section">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">How It Works</div>
+      <h2>Your Journey to a Perfect Smile</h2>
+      <p>We've made getting world-class dental care as simple and stress-free as possible.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step reveal" data-delay="0">
+        <div class="process-num">01</div>
+        <h4>Book Online or Call</h4>
+        <p>Choose a convenient time through our online booking system or call us. Emergency slots available same day.</p>
+      </div>
+      <div class="process-step reveal" data-delay="150">
+        <div class="process-num">02</div>
+        <h4>Consultation & Exam</h4>
+        <p>Your dentist performs a comprehensive oral health assessment, digital X-rays, and discusses your goals and concerns.</p>
+      </div>
+      <div class="process-step reveal" data-delay="300">
+        <div class="process-num">03</div>
+        <h4>Custom Treatment Plan</h4>
+        <p>We create a personalized treatment plan with transparent pricing, timeline, and all available options explained clearly.</p>
+      </div>
+      <div class="process-step reveal" data-delay="450">
+        <div class="process-num">04</div>
+        <h4>Smile Transformation</h4>
+        <p>Relax in our comfortable chairs as our specialists deliver your treatment with precision, care, and the latest technology.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   WHY CHOOSE US — split with image
+══════════════════════════════════════ -->
+<section class="section" style="background:var(--off-white);">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <div class="section-label">Why Choose Us</div>
+        <h2>What Makes Luxesmile Different</h2>
+        <p>We aren't just another dental clinic. Our commitment to clinical excellence, patient comfort, and ongoing education sets us apart across all of East Africa.</p>
+
+        <div style="display:flex;flex-direction:column;gap:20px;margin-top:32px;">
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <div style="width:50px;height:50px;background:var(--primary-bg);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;flex-shrink:0;"><i class="fas fa-microscope"></i></div>
+            <div>
+              <strong style="display:block;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:4px;">Cutting-Edge Technology</strong>
+              <p style="font-size:0.88rem;margin:0;">We invest in the latest dental technology — CBCT 3D scanners, digital impressions, and laser dentistry for precision results.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <div style="width:50px;height:50px;background:var(--primary-bg);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;flex-shrink:0;"><i class="fas fa-user-graduate"></i></div>
+            <div>
+              <strong style="display:block;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:4px;">Internationally Trained Team</strong>
+              <p style="font-size:0.88rem;margin:0;">Our dentists trained at top institutions in Kenya, UK, and India — bringing global expertise right to Nairobi's doorstep.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <div style="width:50px;height:50px;background:var(--primary-bg);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;flex-shrink:0;"><i class="fas fa-hands-helping"></i></div>
+            <div>
+              <strong style="display:block;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:4px;">Patient-Centered Philosophy</strong>
+              <p style="font-size:0.88rem;margin:0;">We listen first. Every treatment plan is tailored to your unique smile goals, budget, and lifestyle — no one-size-fits-all approach.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:18px;align-items:flex-start;">
+            <div style="width:50px;height:50px;background:var(--primary-bg);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.1rem;flex-shrink:0;"><i class="fas fa-mobile-alt"></i></div>
+            <div>
+              <strong style="display:block;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:4px;">M-Pesa & Insurance Accepted</strong>
+              <p style="font-size:0.88rem;margin:0;">Flexible payment via M-Pesa, all major insurance plans, and affordable installment options to make quality care accessible to all.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-image-wrap reveal-right" data-delay="200" style="display:flex;flex-direction:column;gap:20px;">
+        
+        <!-- TOP IMAGE (Slightly taller 4:3 box) -->
+        <div style="border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:4/3;background:var(--light-gray);">
+          <!-- INSERT TOP PHOTO NAME HERE -->
+          <img src="Dental-image 1.jpg" alt="Dental specialist at Luxesmile using advanced equipment" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+
+        <!-- BOTTOM IMAGE (Wider 16:9 cinematic box) -->
+        <div style="border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:16/9;background:var(--light-gray);">
+          <!-- INSERT BOTTOM PHOTO NAME HERE -->
+          <img src="Dental-image 2.jpg" alt="Modern Luxesmile dental clinic reception and waiting area" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   TEAM SECTION
+══════════════════════════════════════ -->
+<section class="team-section section">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Our Specialists</div>
+      <h2>Meet Our Expert Dental Team</h2>
+      <p>Our board-certified dentists combine years of specialized training with a genuine passion for creating beautiful, healthy smiles.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-card reveal" data-delay="0" style="overflow:visible;">
+        <div class="team-card-body" style="padding:36px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+          <div style="width:72px;height:72px;background:var(--primary-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--primary);">
+            <i class="fas fa-user-md" style="font-size:1.6rem;color:var(--primary);"></i>
+          </div>
+          <h4 style="font-size:1.05rem;margin-bottom:0;">Dr. Amara Osei</h4>
+          <span>Lead Dentist &amp; Implantologist</span>
+          <p style="font-size:0.8rem;color:var(--text-light);margin:0;">BDS, MSc Implantology (London)</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal" data-delay="150" style="overflow:visible;">
+        <div class="team-card-body" style="padding:36px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+          <div style="width:72px;height:72px;background:var(--primary-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--primary);">
+            <i class="fas fa-user-md" style="font-size:1.6rem;color:var(--primary);"></i>
+          </div>
+          <h4 style="font-size:1.05rem;margin-bottom:0;">Dr. Fatima Kamau</h4>
+          <span>Orthodontist &amp; Invisalign Expert</span>
+          <p style="font-size:0.8rem;color:var(--text-light);margin:0;">BDS, MOrth RCS (Edinburgh)</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal" data-delay="300" style="overflow:visible;">
+        <div class="team-card-body" style="padding:36px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+          <div style="width:72px;height:72px;background:var(--primary-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--primary);">
+            <i class="fas fa-user-md" style="font-size:1.6rem;color:var(--primary);"></i>
+          </div>
+          <h4 style="font-size:1.05rem;margin-bottom:0;">Dr. Kofi Mensah</h4>
+          <span>Cosmetic Dentist &amp; Veneer Specialist</span>
+          <p style="font-size:0.8rem;color:var(--text-light);margin:0;">BDS, PG Dip Aesthetic Dentistry</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal" data-delay="450" style="overflow:visible;">
+        <div class="team-card-body" style="padding:36px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;">
+          <div style="width:72px;height:72px;background:var(--primary-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--primary);">
+            <i class="fas fa-user-md" style="font-size:1.6rem;color:var(--primary);"></i>
+          </div>
+          <h4 style="font-size:1.05rem;margin-bottom:0;">Dr. Nia Wanjiku</h4>
+          <span>Pediatric Dentist &amp; Oral Surgeon</span>
+          <p style="font-size:0.8rem;color:var(--text-light);margin:0;">BDS, MSc Paediatric Dentistry</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════ -->
+<section class="testimonials-section section">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label" style="color:rgba(212,175,55,0.9);">Patient Reviews</div>
+      <h2 style="color:var(--white);">What Our Patients Say</h2>
+      <p style="color:rgba(255,255,255,0.6);">Over 12,500 patients have trusted us with their smiles. Here's what some of them have to say.</p>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:48px;flex-wrap:wrap;" class="reveal">
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-pill);padding:12px 28px;display:flex;align-items:center;gap:12px;">
+        <i class="fab fa-google" style="color:#D4AF37;font-size:1.3rem;"></i>
+        <div>
+          <div style="color:var(--white);font-weight:700;font-size:0.95rem;">Google Rating</div>
+          <div style="color:#F59E0B;font-size:0.85rem;">★★★★★ 4.9/5 (420 reviews)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal" data-delay="0">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I was terrified of the dentist for years, but the Luxesmile team completely changed that. The Dentist was incredibly patient, explained everything, and I felt zero pain. My new implants look completely natural!"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-author-info">
+            <strong>Grace Mwangi</strong>
+            <span>Dental Implants Patient · Ruiru</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal" data-delay="150">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"My daughter had her braces done here and the experience was fantastic from start to finish. The team was wonderful with her — so gentle and reassuring. Her smile now is absolutely stunning. Thank you Luxesmile!"</p>
+        <div class="testimonial-author">
+          <div class="testimonial-author-info">
+            <strong>Joyce Achieng</strong>
+            <span>Parent · Orthodontics · Ruai</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal" data-delay="300">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Got veneers done at Luxesmile Ruiru and I'm absolutely obsessed with my smile. The before/after results are unbelievable. The clinic is clean, modern, and the staff makes you feel like VIP from the moment you walk in."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-author-info">
+            <strong>Brian Kariuki</strong>
+            <span>Veneers &amp; Cosmetic · Ruiru</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   APPOINTMENT BOOKING SECTION
+══════════════════════════════════════ -->
+<section class="appointment-section section" id="appointment">
+  <div class="container">
+    <div class="appointment-grid">
+      <div class="reveal-left">
+        <div class="section-label">Book a Visit</div>
+        <h2>Schedule Your Appointment Today</h2>
+        <p>Ready to transform your smile? Booking with Luxesmile takes less than 2 minutes. Choose a time that works for you and our team will confirm within 2 hours.</p>
+
+        <div style="display:flex;flex-direction:column;gap:20px;margin-top:36px;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:52px;height:52px;background:var(--primary-bg);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.2rem;flex-shrink:0;"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <strong style="display:block;font-size:0.95rem;font-weight:700;color:var(--navy);">Clinic Location</strong>
+              <span style="font-size:0.87rem;color:var(--text-mid);">Ruiru Town &amp; Ruai — Nairobi, Kenya</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:52px;height:52px;background:var(--primary-bg);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.2rem;flex-shrink:0;"><i class="fas fa-clock"></i></div>
+            <div>
+              <strong style="display:block;font-size:0.95rem;font-weight:700;color:var(--navy);">Opening Hours</strong>
+              <span style="font-size:0.87rem;color:var(--text-mid);">Mon–Fri: 8am–7pm &nbsp;|&nbsp; Sat: 8am–4pm</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:52px;height:52px;background:var(--primary-bg);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:1.2rem;flex-shrink:0;"><i class="fas fa-phone"></i></div>
+            <div>
+              <strong style="display:block;font-size:0.95rem;font-weight:700;color:var(--navy);">Call or WhatsApp</strong>
+              <a href="tel:+254700123456" style="font-size:0.87rem;color:var(--primary);font-weight:600;">+254 700 123 456</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:32px;background:var(--navy);border-radius:var(--radius-lg);padding:20px 24px;display:flex;align-items:center;gap:16px;">
+          <div style="width:44px;height:44px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:1.1rem;flex-shrink:0;"><i class="fas fa-ambulance"></i></div>
+          <div>
+            <strong style="color:var(--white);display:block;font-size:0.9rem;">Dental Emergency?</strong>
+            <span style="color:rgba(255,255,255,0.6);font-size:0.82rem;">Call our 24/7 emergency line: <a href="tel:+254722999888" style="color:var(--primary);">+254 722 999 888</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-right" data-delay="200">
+        <div class="appointment-form-wrap">
+          <div class="form-title">Request an Appointment</div>
+          <p class="form-subtitle">We'll confirm your slot within 2 hours</p>
+          <form data-form="appointment">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="appt-fname">First Name *</label>
+                <input type="text" id="appt-fname" placeholder="e.g. Grace" required>
+              </div>
+              <div class="form-group">
+                <label for="appt-lname">Last Name *</label>
+                <input type="text" id="appt-lname" placeholder="e.g. Mwangi" required>
+              </div>
+              <div class="form-group">
+                <label for="appt-phone">Phone Number *</label>
+                <input type="tel" id="appt-phone" placeholder="+254 700 000 000" required>
+              </div>
+              <div class="form-group">
+                <label for="appt-email">Email Address</label>
+                <input type="email" id="appt-email" placeholder="grace@email.com">
+              </div>
+              <div class="form-group">
+                <label for="appt-service">Service Needed *</label>
+                <select id="appt-service" required>
+                  <option value="">Select a service</option>
+                  <option>Dental Implants</option>
+                  <option>Teeth Whitening</option>
+                  <option>Orthodontics / Braces</option>
+                  <option>Cosmetic Dentistry / Veneers</option>
+                  <option>General Check-Up & Cleaning</option>
+                  <option>Root Canal Treatment</option>
+                  <option>Pediatric Dentistry</option>
+                  <option>Emergency Dental Care</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="appt-date">Preferred Date *</label>
+                <input type="date" id="appt-date" required>
+              </div>
+              <div class="form-group full">
+                <label for="appt-notes">Additional Notes</label>
+                <textarea id="appt-notes" rows="3" placeholder="Describe your concern or any special requirements..."></textarea>
+              </div>
+              <div class="form-group full">
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;">
+                  <i class="fas fa-calendar-check"></i> Confirm Appointment Request
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   BLOG PREVIEW
+══════════════════════════════════════ -->
+<section class="blog-section section">
+  <div class="container">
+    <div class="section-header d-flex justify-between align-center reveal" style="flex-wrap:wrap;gap:20px;margin-bottom:var(--space-lg);">
+      <div>
+        <div class="section-label">Dental Insights</div>
+        <h2 style="margin-bottom:0;">Latest from Our Blog</h2>
+      </div>
+      <a href="blog.html" class="btn btn-outline btn-sm">View All Articles <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="blog-grid">
+      
+      <article class="blog-card reveal" data-delay="0">
+        <div class="blog-card-img">
+          
+          <img src="Dental-implants.jpg" alt="Dental implants guide for Kenyans" loading="lazy">
+          
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Implants</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> May 10, 2025</span>
+          </div>
+          <h3>The Complete Guide to Dental Implants in Kenya: Costs, Process & What to Expect</h3>
+          <p>Dental implants are the gold standard for replacing missing teeth. In this comprehensive guide, we break down everything Kenyan patients need to know...</p>
+          <a href="blog.html?id=1" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-delay="150">
+        <div class="blog-card-img">
+          
+          <img src="Teeth-whitening.jpg" alt="Professional teeth whitening benefits" loading="lazy">
+          
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Whitening</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Apr 28, 2025</span>
+          </div>
+          <h3>Professional vs. At-Home Teeth Whitening: Which Is Right for You?</h3>
+          <p>The market is flooded with DIY whitening strips, charcoal pastes, and LED kits. But how do they compare to professional in-office whitening?</p>
+          <a href="blog.html?id=2" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-delay="300">
+        <div class="blog-card-img">
+          <img src="Child-dentistry.jpg" alt="Children's dental health tips" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Kids</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Apr 14, 2025</span>
+          </div>
+          <h3>5 Ways to Make Your Child's First Dental Visit Stress-Free and Even Fun</h3>
+          <p>Dental anxiety in children can last a lifetime if that first visit goes badly. Here's how Luxesmile's pediatric team creates positive experiences...</p>
+          <a href="blog.html?id=3" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+      
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   CTA BAND
+══════════════════════════════════════ -->
+<section style="background:linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);padding:80px 0;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-50%;right:-5%;width:500px;height:500px;background:var(--primary);border-radius:50%;filter:blur(130px);opacity:0.07;"></div>
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;" class="reveal">
+      <div>
+        <div class="section-label" style="color:var(--primary);">Start Your Journey</div>
+        <h2 style="color:var(--white);max-width:500px;margin-bottom:12px;">Ready for the Smile You've Always Dreamed Of?</h2>
+        <p style="color:rgba(255,255,255,0.6);max-width:480px;">Join over 12,500 Kenyans who've transformed their smiles at Luxesmile. Your first consultation includes a full oral health assessment — absolutely free.</p>
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-calendar-check"></i> Book Free Consultation
+        </a>
+        <a href="tel:+254700123456" class="btn btn-white btn-lg">
+          <i class="fas fa-phone"></i> Call Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:12px;">
+          <div class="nav-logo-icon">🦷</div>
+          <div>
+            <div class="nav-logo-text">Luxe<span>smile</span></div>
+            <span class="nav-logo-sub">Dental Clinic · Nairobi</span>
+          </div>
+        </div>
+        <p class="footer-brand-text">Nairobi's premier dental clinic, delivering exceptional oral care with world-class expertise since 2012. Your smile is our passion.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <nav class="footer-links">
+          <a href="services.html#dental-implants">Dental Implants</a>
+          <a href="services.html#teeth-whitening">Teeth Whitening</a>
+          <a href="services.html#orthodontics">Orthodontics</a>
+          <a href="services.html#cosmetic">Cosmetic Dentistry</a>
+          <a href="services.html#general">General Dentistry</a>
+          <a href="services.html#pediatric">Pediatric Dentistry</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="blog.html">Blog</a>
+          <a href="shop.html">Dental Shop</a>
+          <a href="careers.html">Careers</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="contact.html#map">Find Us</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Ruiru Town &amp; Ruai, Nairobi, Kenya</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone"></i>
+          <span><a href="tel:+254700123456" style="color:rgba(255,255,255,0.55);">+254 700 123 456</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span><a href="mailto:info@luxesmile.co.ke" style="color:rgba(255,255,255,0.55);">info@luxesmile.co.ke</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon–Fri: 8am–7pm<br>Saturday: 8am–4pm</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 <a href="index.html">Luxesmile Dental Clinic</a>. All rights reserved. Nairobi, Kenya.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+   CART SIDEBAR
+══════════════════════════════════════ -->
+<div id="cart-sidebar">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-bag"></i> My Cart</h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-body"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total:</span>
+      <span class="cart-total-price">KES 0</span>
+    </div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showToast('M-Pesa checkout coming! Call +254 700 123 456', 'info', 'fa-mobile-alt')">
+      <i class="fas fa-mobile-alt"></i> Checkout via M-Pesa
+    </button>
+  </div>
+</div>
+<div id="cart-overlay"></div>
+<div id="toast-container"></div>
+
+<script src="js/main.js"></script>
+<script>
+  // Set min date for appointment to today
+  const today = new Date().toISOString().split('T')[0];
+  const apptDate = document.getElementById('appt-date');
+  if (apptDate) apptDate.min = today;
+</script>
+</body>
+</html>
+
+

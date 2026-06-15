@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dental Health Blog — Luxesmile Dental Clinic Nairobi</title>
+  <meta name="description" content="Expert dental health articles, tips, and guides from Luxesmile's specialist team in Nairobi, Kenya.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .blog-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .filter-btn {
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 0.84rem;
+      font-weight: 600;
+      border: 2px solid var(--mid-gray);
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      background: var(--white);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-bg);
+    }
+    .blog-search-wrap {
+      margin-left: auto;
+      position: relative;
+    }
+    .blog-search-wrap input {
+      padding: 10px 16px 10px 40px;
+      border: 1.5px solid var(--mid-gray);
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      width: 240px;
+      outline: none;
+      transition: border-color var(--transition-fast);
+      font-family: var(--font-body);
+    }
+    .blog-search-wrap input:focus { border-color: var(--primary); }
+    .blog-search-wrap i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+    .featured-article {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+      background: var(--white);
+      border: 1px solid var(--mid-gray);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-bottom: 60px;
+      box-shadow: var(--shadow-md);
+    }
+    .featured-article-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .featured-article-img img { width: 100%; height: 100%; object-fit: cover; }
+    .featured-article-body { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+    .featured-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-bg);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 20px;
+    }
+    .featured-article-body h2 { font-size: 1.6rem; margin-bottom: 12px; }
+    .newsletter-section {
+      background: var(--navy);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: 24px auto 0;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: var(--radius-pill);
+      border: none;
+      font-size: 0.9rem;
+      outline: none;
+      font-family: var(--font-body);
+    }
+
+    @media (max-width:768px) {
+      .featured-article { grid-template-columns: 1fr; }
+      .featured-article-body { padding: 28px; }
+      .blog-search-wrap { margin-left: 0; width: 100%; }
+      .blog-search-wrap input { width: 100%; }
+      .newsletter-form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <div class="top-info"><i class="fas fa-map-marker-alt"></i><span>Ruiru &amp; Ruai, Nairobi, Kenya</span></div>
+        <div class="top-info"><i class="fas fa-clock"></i><span>Mon–Sat: 8:00 AM – 7:00 PM</span></div>
+      </div>
+      <div class="top-bar-right">
+        <div class="top-info"><i class="fas fa-phone"></i><a href="tel:+254700123456">+254 700 123 456</a></div>
+        <div class="top-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="main-nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🦷</div>
+        <div><div class="nav-logo-text">Luxe<span>smile</span></div><span class="nav-logo-sub">Dental Clinic · Nairobi</span></div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+        <li class="nav-item"><a href="careers.html" class="nav-link">Careers</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+        <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" style="margin-bottom:20px;">
+      <a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span class="current">Blog</span>
+    </nav>
+    <div class="section-label" style="color:var(--primary);">Dental Insights</div>
+    <h1 class="page-hero-title">Our Dental <span>Health Blog</span></h1>
+    <p style="color:rgba(255,255,255,0.65);max-width:540px;margin-top:12px;font-size:1.05rem;">Expert advice, treatment guides, and dental health tips from Luxesmile's specialist team — helping Kenyans make informed decisions about their oral health.</p>
+  </div>
+</section>
+
+<!-- Blog Content -->
+<section class="section" style="background:var(--off-white);">
+  <div class="container">
+
+    <!-- Featured Article -->
+    <div class="featured-article reveal">
+      <div class="featured-article-img">
+        <img src="Implants 2.jpg" alt="Complete guide to dental implants in Kenya" loading="lazy">
+      </div>
+      <div class="featured-article-body">
+        <span class="featured-label"><i class="fas fa-fire"></i> Featured Article</span>
+        <div class="blog-card-meta" style="margin-bottom:16px;">
+          <span class="blog-tag">Implants</span>
+          <span class="blog-date"><i class="far fa-calendar"></i> May 10, 2025</span>
+          <span class="blog-date"><i class="far fa-clock"></i> 8 min read</span>
+        </div>
+        <h2>The Complete Guide to Dental Implants in Kenya: Costs, Process & What to Expect</h2>
+        <p style="font-size:0.95rem;line-height:1.75;margin-bottom:24px;">Dental implants are the gold standard for replacing missing teeth. In this comprehensive guide, we break down everything Kenyan patients need to know — from procedure steps to costs and financing options.</p>
+        <a href="blog_single.html?id=1" class="btn btn-primary"><i class="fas fa-book-open"></i> Read Full Article</a>
+      </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="blog-filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All Articles</button>
+      <button class="filter-btn" data-filter="implants">Implants</button>
+      <button class="filter-btn" data-filter="whitening">Whitening</button>
+      <button class="filter-btn" data-filter="kids">Kids</button>
+      <button class="filter-btn" data-filter="cosmetic">Cosmetic</button>
+      <button class="filter-btn" data-filter="general">General Care</button>
+      <div class="blog-search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="blog-search" placeholder="Search articles..." aria-label="Search blog articles">
+      </div>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="blog-grid" id="blog-grid">
+
+      <article class="blog-card reveal" data-category="whitening" data-delay="0">
+        <div class="blog-card-img">
+          <img src="Whitening.jpg" alt="Professional vs at-home teeth whitening comparison" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Whitening</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Apr 28, 2025</span>
+          </div>
+          <h3>Professional vs. At-Home Teeth Whitening: Which Is Right for You?</h3>
+          <p>The market is flooded with DIY whitening strips and charcoal pastes. But how do they compare to professional in-office whitening treatments?</p>
+          <a href="blog_single.html?id=2" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-category="kids" data-delay="100">
+        <div class="blog-card-img">
+          <img src="Pedeatric.jpg" alt="Making childrens dental visits fun" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Kids</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Apr 14, 2025</span>
+          </div>
+          <h3>5 Ways to Make Your Child's First Dental Visit Stress-Free and Even Fun</h3>
+          <p>Dental anxiety in children can last a lifetime. Here's how to prepare your child for their first visit and what Luxesmile's pediatric team does to create positive experiences.</p>
+          <a href="blog_single.html?id=3" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-category="implants" data-delay="200">
+        <div class="blog-card-img">
+          <img src="Comparison.jpg" alt="Dental implant vs dental bridge comparison guide" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Implants</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Mar 30, 2025</span>
+          </div>
+          <h3>Dental Implants vs. Bridges: Which Tooth Replacement Is Better in 2026?</h3>
+          <p>If you're missing a tooth, you have two main permanent options: a dental implant or a bridge. Our implantologist breaks down the pros, cons, costs, and long-term outcomes.</p>
+          <a href="blog_single.html?id=4" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-category="cosmetic" data-delay="0">
+        <div class="blog-card-img">
+          <img src="Veneers.jpg" alt="Porcelain dental veneers guide Kenya" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Cosmetic</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Mar 15, 2025</span>
+          </div>
+          <h3>Everything You Need to Know About Porcelain Veneers in Kenya</h3>
+          <p>Veneers are one of the most transformative cosmetic dental treatments available. But are they right for you? Learn about the procedure, longevity, and costs in Kenya.</p>
+          <a href="blog_single.html?id=5" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-category="general" data-delay="100">
+        <div class="blog-card-img">
+          <img src="Checkup.jpg" alt="Why you need dental check-ups every 6 months" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">General Care</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Feb 28, 2025</span>
+          </div>
+          <h3>Why Skipping Your 6-Month Dental Check-Up Is More Costly Than You Think</h3>
+          <p>Many Kenyans only visit the dentist when in pain. But preventive check-ups every six months can save you significant money and pain in the long run. Here's why.</p>
+          <a href="blog_single.html?id=6" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-category="general" data-delay="200">
+        <div class="blog-card-img">
+          <img src="Diet.jpg" alt="Best foods for dental health diet guide" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">General Care</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Feb 10, 2025</span>
+          </div>
+          <h3>The Dental Diet: 10 Foods That Protect Your Teeth (and 5 That Destroy Them)</h3>
+          <p>What you eat directly affects your oral health. Our nutritional dentistry guide reveals which Kenyan foods strengthen enamel and which ones accelerate decay.</p>
+          <a href="blog_single.html?id=7" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-category="cosmetic" data-delay="0">
+        <div class="blog-card-img">
+          <img src="Invasalign.jpg" alt="Invisalign clear aligners review Kenya" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Orthodontics</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Jan 22, 2025</span>
+          </div>
+          <h3>Invisalign in Nairobi: Is It Worth It? An Honest Patient Review</h3>
+          <p>More Nairobi adults are choosing Invisalign over traditional braces. We share the real experience — including costs, timeline, effectiveness, and before/after results.</p>
+          <a href="blog_single.html?id=8" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-category="general" data-delay="100">
+        <div class="blog-card-img">
+          <img src="Anxiety.jpg" alt="Dental anxiety tips how to overcome fear of dentist" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">General Care</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Jan 8, 2025</span>
+          </div>
+          <h3>Overcoming Dental Anxiety: 7 Proven Techniques That Actually Work</h3>
+          <p>Studies show over 36% of Kenyan adults avoid the dentist due to fear. Our clinical psychologist-approved guide helps you manage dental anxiety and get the care you need.</p>
+          <a href="blog_single.html?id=9" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal" data-category="kids" data-delay="200">
+        <div class="blog-card-img">
+          <img src="Flouride.jpg" alt="When should children start using toothpaste fluoride" loading="lazy">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Kids</span>
+            <span class="blog-date"><i class="far fa-calendar"></i> Dec 14, 2024</span>
+          </div>
+          <h3>When Should Children Start Using Fluoride Toothpaste? A Complete Parent's Guide</h3>
+          <p>Many Kenyan parents are unsure about fluoride safety for young children. Our pediatric dentist Dr. Nia Wanjiku answers all your questions with evidence-based guidance.</p>
+          <a href="blog_single.html?id=10" class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <div class="newsletter-section reveal">
+      <div class="section-label" style="color:var(--primary);justify-content:center;">Stay Informed</div>
+      <h3 style="color:var(--white);margin-bottom:12px;">Get Monthly Dental Health Tips</h3>
+      <p style="color:rgba(255,255,255,0.6);max-width:420px;margin:0 auto;">Subscribe to the Luxesmile newsletter for expert dental advice, special offers, and clinic updates — delivered monthly.</p>
+      <form data-form="newsletter" class="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required style="font-family:var(--font-body);">
+        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom:12px;">
+          <div class="nav-logo-icon">🦷</div>
+          <div><div class="nav-logo-text">Luxe<span>smile</span></div><span class="nav-logo-sub">Dental Clinic · Nairobi</span></div>
+        </div>
+        <p class="footer-brand-text">Nairobi's premier dental clinic delivering exceptional oral care since 2012.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <nav class="footer-links">
+          <a href="services.html#dental-implants">Dental Implants</a>
+          <a href="services.html#teeth-whitening">Teeth Whitening</a>
+          <a href="services.html#orthodontics">Orthodontics</a>
+          <a href="services.html#cosmetic">Cosmetic Dentistry</a>
+          <a href="services.html#general">General Dentistry</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <nav class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="blog.html">Blog</a>
+          <a href="shop.html">Shop</a>
+          <a href="careers.html">Careers</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>Ruiru Town &amp; Ruai, Nairobi, Kenya</span></div>
+        <div class="footer-contact-item"><i class="fas fa-phone"></i><span><a href="tel:+254700123456" style="color:rgba(255,255,255,0.55);">+254 700 123 456</a></span></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:info@luxesmile.co.ke" style="color:rgba(255,255,255,0.55);">info@luxesmile.co.ke</a></span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 <a href="index.html">Luxesmile Dental Clinic</a>. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
