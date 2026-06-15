@@ -408,7 +408,7 @@
       <span class="cart-total-price">KES 0</span>
     </div>
     <a href="contact.html" class="btn btn-outline btn-sm" style="width:100%;justify-content:center;margin-bottom:10px;">Have Questions? Contact Us</a>
-    <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showToast('M-Pesa checkout! Paybill 123456, Account: Your Name','info','fa-mobile-alt')">
+    <button class="btn btn-primary" style="width:100%;justify-content:center;" id="checkout-btn" onclick="realCheckout()">
       <i class="fas fa-mobile-alt"></i> Pay via M-Pesa
     </button>
   </div>
@@ -465,5 +465,58 @@
 
 <div id="toast-container"></div>
 <script src="js/main.js"></script>
+<script>
+// REAL M-Pesa Checkout — creates an order in the backend
+async function realCheckout() {
+  if (!cart || cart.length === 0) {
+    showToast('Your cart is empty', 'error', 'fa-shopping-bag');
+    return;
+  }
+
+  const token = localStorage.getItem('luxesmile_token');
+  if (!token) {
+    showToast('Please log in to place an order', 'info', 'fa-user');
+    setTimeout(() => { window.location.href = '/login'; }, 1500);
+    return;
+  }
+
+  const btn = document.getElementById('checkout-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+  try {
+    const items = cart.map(i => ({
+      product_id: i.id,
+      name: i.name,
+      price: i.price,
+      qty: i.qty,
+      type: 'product'
+    }));
+
+    const res = await fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ items, payment_method: 'mpesa', notes: 'Order from online shop' })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      // Clear cart
+      cart = [];
+      saveCart();
+      closeCart();
+      showToast(`✅ Order #${data.order.id.slice(0,8).toUpperCase()} placed! M-Pesa: Send KES ${data.order.total.toLocaleString()} to Paybill 123456, Account: ${data.order.id.slice(0,8).toUpperCase()}. We'll confirm shortly.`, 'success', 'fa-check-circle');
+    } else {
+      showToast(data.message || 'Checkout failed', 'error', 'fa-exclamation-circle');
+    }
+  } catch(err) {
+    showToast('Network error. Please try again.', 'error', 'fa-exclamation-circle');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-mobile-alt"></i> Pay via M-Pesa';
+  }
+}
+</script>
 </body>
 </html>

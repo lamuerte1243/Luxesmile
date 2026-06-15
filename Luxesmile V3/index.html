@@ -111,6 +111,10 @@
           <i class="fas fa-phone"></i>
           <a href="tel:+254768703009">+254 768 703009</a>
         </div>
+        <div id="nav-auth-btns">
+          <a href="/login" class="btn btn-outline btn-sm" id="nav-login-btn" style="text-decoration:none;margin-right:6px"><i class="fas fa-user"></i> Login</a>
+          <a href="/dashboard" class="btn btn-primary btn-sm" id="nav-dashboard-btn" style="display:none;text-decoration:none"><i class="fas fa-th-large"></i> Dashboard</a>
+        </div>
         <button class="btn btn-primary btn-sm" onclick="document.getElementById('appointment').scrollIntoView({behavior:'smooth'})">
           <i class="fas fa-calendar-check"></i> Book Appointment
         </button>
@@ -118,6 +122,21 @@
           <span></span><span></span><span></span>
         </button>
       </div>
+      <script>
+        (function(){
+          const token = localStorage.getItem('luxesmile_token');
+          if(token){
+            fetch('/api/auth/me',{headers:{'Authorization':'Bearer '+token}})
+              .then(r=>r.json()).then(d=>{
+                if(d.success){
+                  document.getElementById('nav-login-btn').style.display='none';
+                  document.getElementById('nav-dashboard-btn').style.display='inline-flex';
+                  document.getElementById('nav-dashboard-btn').href = d.user.role==='admin' ? '/admin' : '/dashboard';
+                }
+              }).catch(()=>{});
+          }
+        })();
+      </script>
     </div>
   </div>
 </nav>
@@ -973,6 +992,75 @@
   const today = new Date().toISOString().split('T')[0];
   const apptDate = document.getElementById('appt-date');
   if (apptDate) apptDate.min = today;
+
+  // REAL appointment booking from homepage
+  (function() {
+    const form = document.querySelector('form[data-form="appointment"]');
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
+
+      const fname = document.getElementById('appt-fname').value.trim();
+      const lname = document.getElementById('appt-lname').value.trim();
+      const phone = document.getElementById('appt-phone').value.trim();
+      const email = document.getElementById('appt-email').value.trim();
+      const service = document.getElementById('appt-service').value;
+      const date = document.getElementById('appt-date').value;
+      const notes = document.getElementById('appt-notes').value.trim();
+
+      try {
+        const token = localStorage.getItem('luxesmile_token');
+        const res = await fetch('/api/appointments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', ...(token ? {'Authorization': `Bearer ${token}`} : {}) },
+          body: JSON.stringify({ name: `${fname} ${lname}`, email: email || 'noemail@luxesmile.co.ke', phone, service, date, time: 'Morning (8am – 12pm)', message: notes })
+        });
+        const data = await res.json();
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Appointment Request';
+        if (data.success) {
+          form.reset();
+          if (apptDate) apptDate.min = today;
+          showToast('✅ Appointment booked! We\'ll confirm within 2 hours.', 'success', 'fa-check-circle');
+        } else {
+          showToast(data.message || 'Booking failed', 'error', 'fa-exclamation-circle');
+        }
+      } catch(err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Appointment Request';
+        showToast('Network error. Please try again.', 'error', 'fa-exclamation-circle');
+      }
+    });
+  })();
+
+  // REAL newsletter subscription
+  (function() {
+    document.querySelectorAll('form[data-form="newsletter"]').forEach(form => {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const input = form.querySelector('input[type="email"]');
+        if (!input || !input.value) return;
+        const btn = form.querySelector('button');
+        if (btn) { btn.disabled = true; }
+        try {
+          const res = await fetch('/api/contact/newsletter', {
+            method: 'POST', headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ email: input.value.trim() })
+          });
+          const data = await res.json();
+          if (btn) { btn.disabled = false; }
+          showToast(data.message || 'Subscribed!', 'success', 'fa-check-circle');
+          if (data.success) input.value = '';
+        } catch(err) {
+          if (btn) { btn.disabled = false; }
+          showToast('Network error', 'error', 'fa-exclamation-circle');
+        }
+      });
+    });
+  })();
 </script>
 </body>
 </html>

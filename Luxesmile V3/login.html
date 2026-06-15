@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Luxesmile Dental Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--off-white); min-height: 100vh; display: flex; flex-direction: column; }
+    .auth-wrap {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px; min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #1a2a4a 50%, var(--navy-light) 100%);
+    }
+    .auth-card {
+      background: var(--white); border-radius: var(--radius-xl); padding: 48px 44px;
+      width: 100%; max-width: 460px; box-shadow: var(--shadow-xl);
+      position: relative; overflow: hidden;
+    }
+    .auth-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    }
+    .auth-logo {
+      text-align: center; margin-bottom: 32px;
+    }
+    .auth-logo-icon { font-size: 2.5rem; margin-bottom: 8px; display: block; }
+    .auth-logo h1 { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; color: var(--navy); margin: 0 0 4px; }
+    .auth-logo h1 span { color: var(--primary); }
+    .auth-logo p { color: var(--text-light); font-size: 0.9rem; margin: 0; }
+    .auth-title { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .auth-subtitle { color: var(--text-mid); font-size: 0.9rem; margin-bottom: 28px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.88rem; color: var(--text-dark); margin-bottom: 7px; }
+    .form-group .input-wrap { position: relative; }
+    .form-group .input-wrap i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-light); font-size: 0.95rem; }
+    .form-group input {
+      width: 100%; padding: 12px 14px 12px 42px;
+      border: 1.5px solid var(--mid-gray); border-radius: var(--radius-md);
+      font-family: var(--font-body); font-size: 0.95rem; color: var(--text-dark);
+      transition: all var(--transition-base); outline: none; background: var(--off-white);
+      box-sizing: border-box;
+    }
+    .form-group input:focus { border-color: var(--primary); background: var(--white); box-shadow: 0 0 0 3px rgba(212,175,55,0.12); }
+    .form-group .toggle-pw {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer; color: var(--text-light); font-size: 0.95rem;
+    }
+    .form-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .form-row a { font-size: 0.85rem; color: var(--primary); font-weight: 600; text-decoration: none; }
+    .form-row a:hover { text-decoration: underline; }
+    .remember-label { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; color: var(--text-mid); cursor: pointer; }
+    .remember-label input { width: auto; }
+    .btn-auth {
+      width: 100%; padding: 14px; background: var(--primary); color: var(--navy);
+      border: none; border-radius: var(--radius-md); font-family: var(--font-head);
+      font-size: 1rem; font-weight: 700; cursor: pointer; transition: all var(--transition-base);
+      display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 20px;
+    }
+    .btn-auth:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: var(--shadow-gold); }
+    .btn-auth:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+    .auth-divider { text-align: center; position: relative; margin: 20px 0; color: var(--text-light); font-size: 0.85rem; }
+    .auth-divider::before, .auth-divider::after { content: ''; position: absolute; top: 50%; width: 42%; height: 1px; background: var(--mid-gray); }
+    .auth-divider::before { left: 0; } .auth-divider::after { right: 0; }
+    .auth-footer { text-align: center; font-size: 0.9rem; color: var(--text-mid); }
+    .auth-footer a { color: var(--primary); font-weight: 600; text-decoration: none; }
+    .auth-footer a:hover { text-decoration: underline; }
+    .error-msg { background: #fff2f2; border: 1px solid #ffd6d6; border-radius: var(--radius-sm); padding: 12px 16px; color: #c0392b; font-size: 0.88rem; margin-bottom: 18px; display: none; }
+    .error-msg.show { display: flex; align-items: center; gap: 8px; }
+    .success-msg { background: #f0fff4; border: 1px solid #d4edda; border-radius: var(--radius-sm); padding: 12px 16px; color: #1a7f37; font-size: 0.88rem; margin-bottom: 18px; display: none; }
+    .success-msg.show { display: flex; align-items: center; gap: 8px; }
+    .demo-box { background: var(--primary-bg); border: 1px dashed var(--primary); border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 24px; font-size: 0.82rem; }
+    .demo-box strong { color: var(--navy); font-weight: 700; display: block; margin-bottom: 6px; }
+    .demo-box span { color: var(--text-mid); display: block; line-height: 1.7; }
+    @media(max-width:480px){ .auth-card { padding: 32px 24px; } }
+  </style>
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <span class="auth-logo-icon">🦷</span>
+      <h1>Luxe<span>smile</span></h1>
+      <p>Dental Clinic · Nairobi, Kenya</p>
+    </div>
+
+    <h2 class="auth-title">Welcome back</h2>
+    <p class="auth-subtitle">Sign in to your patient dashboard</p>
+
+    <div class="demo-box">
+      <strong>🔑 Demo Accounts</strong>
+      <span>Patient: patient@luxesmile.co.ke / Patient@2024</span>
+      <span>Admin: admin@luxesmile.co.ke / Luxesmile@Admin2024</span>
+    </div>
+
+    <div class="error-msg" id="login-error"><i class="fas fa-exclamation-circle"></i><span id="error-text">Invalid credentials</span></div>
+    <div class="success-msg" id="login-success"><i class="fas fa-check-circle"></i><span>Login successful! Redirecting...</span></div>
+
+    <form id="login-form" novalidate>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrap">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+          <button type="button" class="toggle-pw" id="toggle-pw"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="remember-label"><input type="checkbox" id="remember"> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn-auth" id="login-btn">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </button>
+    </form>
+
+    <div class="auth-divider">or</div>
+    <div class="auth-footer">
+      Don't have an account? <a href="signup.html">Create one free</a>
+    </div>
+    <div class="auth-footer" style="margin-top:12px;">
+      <a href="index.html"><i class="fas fa-arrow-left"></i> Back to website</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '/api';
+
+// Toggle password visibility
+document.getElementById('toggle-pw').addEventListener('click', function() {
+  const input = document.getElementById('password');
+  const icon = this.querySelector('i');
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.className = 'fas fa-eye-slash';
+  } else {
+    input.type = 'password';
+    icon.className = 'fas fa-eye';
+  }
+});
+
+// Login form
+document.getElementById('login-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('login-btn');
+  const errorEl = document.getElementById('login-error');
+  const errorText = document.getElementById('error-text');
+  const successEl = document.getElementById('login-success');
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+  errorEl.classList.remove('show');
+  successEl.classList.remove('show');
+
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+
+  try {
+    const res = await fetch(`${API}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+
+    if (!data.success) {
+      errorText.textContent = data.message || 'Login failed';
+      errorEl.classList.add('show');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+      return;
+    }
+
+    // Store token
+    const storage = document.getElementById('remember').checked ? localStorage : sessionStorage;
+    storage.setItem('luxesmile_token', data.token);
+    storage.setItem('luxesmile_user', JSON.stringify(data.user));
+    localStorage.setItem('luxesmile_token', data.token);
+    localStorage.setItem('luxesmile_user', JSON.stringify(data.user));
+
+    successEl.classList.add('show');
+
+    // Redirect based on role
+    setTimeout(() => {
+      if (data.user.role === 'admin') {
+        window.location.href = '/admin';
+      } else {
+        window.location.href = '/dashboard';
+      }
+    }, 1200);
+
+  } catch (err) {
+    errorText.textContent = 'Network error. Please check your connection.';
+    errorEl.classList.add('show');
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+  }
+});
+
+// If already logged in, redirect
+const existingToken = localStorage.getItem('luxesmile_token');
+if (existingToken) {
+  fetch(`${API}/auth/me`, { headers: { 'Authorization': `Bearer ${existingToken}` } })
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        window.location.href = data.user.role === 'admin' ? '/admin' : '/dashboard';
+      }
+    }).catch(() => {});
+}
+</script>
+</body>
+</html>

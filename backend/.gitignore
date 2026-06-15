@@ -1,0 +1,8 @@
+node_modules/
+database/luxesmile.db
+database/*.db-shm
+database/*.db-wal
+uploads/*
+!uploads/.gitkeep
+*.log
+.env
